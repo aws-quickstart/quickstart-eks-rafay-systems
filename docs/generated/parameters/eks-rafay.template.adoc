@@ -1,0 +1,38 @@
+
+.EKS cluster configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|EKS cluster name
+(`EksClusterName`)|`**__Requires input__**`|Name of the EKS cluster to deploy Rafay to.|Namespace
+(`Namespace`)|`**__Requires input__**`|Namespace to deploy Rafay to.
+|===
+.Rafay cluster configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Rafay cluster name
+(`RafayClusterName`)|`**__Requires input__**`|TODO|Rafay project
+(`Project`)|`default`|TDOD
+|===
+.Register new Rafay account
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|First name
+(`FirstName`)|`**__Blank string__**`|Required if registering a new Rafay account.|Last name
+(`LastName`)|`**__Blank string__**`|Required if registering a new Rafay account.|Organization name
+(`OrganizationName`)|`**__Blank string__**`|Required if registering a new Rafay account.|Email
+(`Email`)|`**__Blank string__**`|Required if registering a new Rafay account.
+|===
+.Use existing Rafay account
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|API key
+(`ApiKey`)|`**__Blank string__**`|Required if using an existing Rafay account.|API secret
+(`ApiSecret`)|`**__Blank string__**`|Required if using an existing Rafay account.
+|===
+.AWS Quick Start configuration
+[width="100%",cols="16%,11%,73%",options="header",]
+|===
+|Parameter label (name) |Default value|Description|Quick Start S3 bucket name
+(`QSS3BucketName`)|`aws-quickstart`|S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).|Quick Start S3 key prefix
+(`QSS3KeyPrefix`)|`quickstart-amazon-eks/submodules/quickstart-eks-rafay/`|S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), periods (.) and forward slash (/).
+|===

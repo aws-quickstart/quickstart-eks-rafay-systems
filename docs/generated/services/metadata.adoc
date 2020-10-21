@@ -1,1 +1,12 @@
-// placeholder
+
+:template_aws_lambda_function:
+:template_aws_lambda_layerversion:
+:template_awsqs_kubernetes_resource:
+:template_copyzips:
+:template_custom_copyzips:
+:template_custom_rafaycluster:
+:template_custom_rafayorg:
+:template_kubernetes:
+:template_lambda:
+:template_rafaycluster:
+:template_rafayorg:
