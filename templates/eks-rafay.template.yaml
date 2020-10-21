@@ -1,44 +1,208 @@
+# QUESTIONS:
+# Should Rafay cluster name == EKS cluster name
+# Can we join an existing cluster
+# Confirm default value for Project
+
+# TODO:
+# Rules
+# Outputs
+# Delete method for Rafay cluster to cleanup s3 object
+# parameter for optionally providing a bucket to store the bootstrap file
+# secret key should come from ssm parameter store, and be placed there if generated
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Deploys the Rafay System helm chart into an existing kubernetes cluster (qsID)"
 Metadata:
   QuickStartDocumentation:
     EntrypointName: "Launch into an existing EKS cluster"
-ParameterGroups:
-ParameterLabels:
+  AWS::CloudFormation::Interface:
+    ParameterGroups:
+      - Label:
+          default: EKS cluster configuration
+        Parameters:
+          - EksClusterName
+          - Namespace
+      - Label:
+          default: Rafay cluster configuration
+        Parameters:
+          - RafayClusterName
+          - Project
+      - Label:
+          default: Register new Rafay account
+        Parameters:
+          - FirstName
+          - LastName
+          - OrganizationName
+          - Email
+      - Label:
+          default: Use existing Rafay account
+        Parameters:
+          - ApiKey
+          - ApiSecret
+      - Label:
+          default: AWS Quick Start configuration
+        Parameters:
+          - QSS3BucketName
+          - QSS3KeyPrefix
+    ParameterLabels:
+      Namespace:
+        default: Namespace
+      EksClusterName:
+        default: EKS cluster name
+      RafayClusterName:
+        default: Rafay cluster name
+      Project:
+        default: Rafay project
+      FirstName:
+        default: First name
+      LastName:
+        default: Last name
+      OrganizationName:
+        default: Organization name
+      Email:
+        default: Email
+      ApiKey:
+        default: API key
+      ApiSecret:
+        default: API secret
+      QSS3BucketName:
+        default: Quick Start S3 bucket name
+      QSS3KeyPrefix:
+        default: Quick Start S3 key prefix
+  LintSpellExclude:
+    - Rafay
+    - Namespace
 Parameters:
+  EksClusterName:
+    Type: String
+    Description: Name of the EKS cluster to deploy Rafay to.
+  Namespace:
+    Type: String
+    Description: Namespace to deploy Rafay to.
+  RafayClusterName:
+    Type: String
+    Description: TODO
+  Project:
+    Type: String
+    Description: TDOD
+    Default: "default"
+  ApiKey:
+    Type: String
+    Description: Required if using an existing Rafay account.
+    Default: ""
+  ApiSecret:
+    Type: String
+    Description: Required if using an existing Rafay account.
+    Default: ""
+  FirstName:
+    Type: String
+    Description: Required if registering a new Rafay account.
+    Default: ""
+  LastName:
+    Type: String
+    Description: Required if registering a new Rafay account.
+    Default: ""
+  OrganizationName:
+    Type: String
+    Description: Required if registering a new Rafay account.
+    Default: ""
+  Email:
+    Type: String
+    Description: Required if registering a new Rafay account.
+    Default: ""
+  QSS3BucketName:
+    AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
+    ConstraintDescription: Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).
+    Default: aws-quickstart
+    Description: S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).
+    Type: String
+  QSS3KeyPrefix:
+    AllowedPattern: ^[0-9a-zA-Z-/.]*$
+    ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), periods (.) and forward slash (/).
+    Default: quickstart-amazon-eks/submodules/quickstart-eks-rafay/
+    Description: S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), periods (.) and forward slash (/).
+    Type: String
+Rules:
+  ExistingAccountValidation: {}
+  NewAccountValidation: {}
+Conditions:
+  RegisterNewAccount: !Equals [!Ref ApiKey, ""]
+  UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+Mappings:
+  Config:
+    Prefix: { Value: 'eks-quickstart' }
 Resources:
-  AWSQSCreateCluster:
+  RafayCreateCluster:
+    Type: "Custom::RafayCluster"
+    Properties:
+      ServiceToken: !GetAtt RafayCreateClusterFunction.Arn
+      RAFAY_CLUSTER_NAME: !Ref RafayClusterName
+      RAFAY_PROJECT: !Ref Project
+      RAFAY_API_KEY: !Ref ApiKey
+      RAFAY_API_SECRET: !Ref ApiSecret
+      s3_bucket: !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
+  RafayCreateOrg:
+    Type: "Custom::RafayOrg"
+    Condition: RegisterNewAccount
+    Properties:
+      ServiceToken: !GetAtt RafayCreateOrgFunction.Arn
+      first_name: !Ref FirstName
+      last_name: !Ref LastName
+      organization_name: !Ref OrganizationName
+      email: !Ref Email
+  RafayBootStrap:
+    Type: "AWSQS::Kubernetes::Resource"
+    Properties:
+      ClusterName: !Ref EksClusterName
+      Namespace: !Ref Namespace
+      Url: !Sub 's3://${RafayCreateCluster.rafay_s3_bucket}/${RafayCreateCluster.rafay_s3_key}'
+  CopyZips:
+    Type: Custom::CopyZips
+    Properties:
+      ServiceToken: !Sub ['arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:${Prefix}-CopyZips', {Prefix: !FindInMap [Config, Prefix, Value]}]
+      DestBucket: !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
+      SourceBucket: !If [UsingDefaultBucket, !Sub '${QSS3BucketName}-${AWS::Region}', !Ref QSS3BucketName]
+      Prefix: !Ref 'QSS3KeyPrefix'
+      Objects:
+        - functions/packages/aws_qs_create_cluster/aws_qs_create_cluster.zip
+        - functions/packages/aws_qs_create_org/aws_qs_create_org.zip
+        - functions/packages/rctlLayer/lambda.zip
+  RctlLayer:
+    DependsOn: CopyZips
+    Type: AWS::Lambda::LayerVersion
+    Properties:
+      LayerName: !Sub ['${Prefix}-Rafay-Rctl-${EksClusterName}', {Prefix: !FindInMap [Config, Prefix, Value]}]
+      CompatibleRuntimes:
+        - python3.6
+        - python3.7
+      Content:
+        S3Bucket:  !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
+        S3Key: !Sub '${QSS3KeyPrefix}functions/packages/crhelperLayer/lambda.zip'
+  RafayCreateClusterFunction:
     Type: AWS::Lambda::Function
-      Properties:
-        FunctionName: !Sub 'aws-qs-create-cluster-${EKSClusterName}'
-        Handler: awsqs_kubernetes_get.handlers.create_rafay_cluster
-        MemorySize: 256
-        Role: !Ref KubernetesAdminRoleArn
-        Runtime: python3.7
-        Timeout: 900
-        Code:
-          S3Bucket: !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
-          S3Key: !Sub '${QSS3KeyPrefix}functions/packages/aws_qs_create_cluster/aws_qs_create_cluster.zip'
-        Environment:
-          Variables:
-        VpcConfig:
-          SecurityGroupIds: [ !Ref EKSLambdaSecurityGroup ]
-          SubnetIds: !Ref EKSSubnetIds
-  AWSQSCreateOrg:
+    DependsOn: CopyZips
+    Properties:
+      FunctionName: !Sub 'aws-qs-create-cluster-${EksClusterName}'
+      Handler: aws_qs_create_cluster.lambda_handler
+      MemorySize: 256
+      Role: !Sub ["arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${Prefix}-CopyZips", {Prefix: !FindInMap [Config, Prefix, Value]}]
+      Runtime: python3.7
+      Timeout: 900
+      Layers: [!Sub ['${Prefix}-Crhelper', {Prefix: !FindInMap [Config, Prefix, Value]}], !Ref RctlLayer]
+      Code:
+        S3Bucket: !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
+        S3Key: !Sub '${QSS3KeyPrefix}functions/packages/aws_qs_create_cluster/aws_qs_create_cluster.zip'
+  RafayCreateOrgFunction:
     Type: AWS::Lambda::Function
-      Properties:
-        FunctionName: !Sub 'aws-qs-create-org-${EKSClusterName}'
-        Handler: awsqs_kubernetes_get.handlers.create_rafay_org
-        MemorySize: 256
-        Role: !Ref KubernetesAdminRoleArn
-        Runtime: python3.7
-        Timeout: 900
-        Code:
-          S3Bucket: !Sub [ '${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', { Prefix: !FindInMap [ Config, Prefix, Value ] } ]
-          S3Key: !Sub '${QSS3KeyPrefix}functions/packages/aws_qs_create_org/aws_qs_create_org.zip'
-        Environment:
-          Variables:
-        VpcConfig:
-          SecurityGroupIds: [ !Ref EKSLambdaSecurityGroup ]
-          SubnetIds: !Ref EKSSubnetIds
-Outputs:
+    Condition: RegisterNewAccount
+    DependsOn: CopyZips
+    Properties:
+      FunctionName: !Sub 'aws-qs-create-org-${EksClusterName}'
+      Handler: aws_qs_create_org.lambda_handler
+      MemorySize: 256
+      Role: !Sub ["arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${Prefix}-CopyZips", {Prefix: !FindInMap [Config, Prefix, Value]}]
+      Runtime: python3.7
+      Timeout: 900
+      Layers: [!Sub ['${Prefix}-Crhelper', {Prefix: !FindInMap [Config, Prefix, Value]}], !Ref RctlLayer]
+      Code:
+        S3Bucket: !Sub [ '${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', { Prefix: !FindInMap [ Config, Prefix, Value ] } ]
+        S3Key: !Sub '${QSS3KeyPrefix}functions/packages/aws_qs_create_org/aws_qs_create_org.zip'
