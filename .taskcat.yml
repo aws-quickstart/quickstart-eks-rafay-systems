@@ -1,0 +1,8 @@
+project:
+  name: quickstart-eks-rafay-systems
+  owner: quickstart-eng@amazon.com
+  regions: ["us-west-2"]
+  template: templates/eks-rafay.template.yaml
+  parameters: {}
+tests:
+  defaults: {}

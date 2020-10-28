@@ -1,7 +1,4 @@
 # TODO:
-# QuickStart:
-# secret key should come from ssm parameter store, and be placed there if generated
-
 # Rafay:
 # Delete method for Rafay cluster to cleanup s3 object
 # lint python files
@@ -95,6 +92,7 @@ Parameters:
     Type: String
     Description: Required if using an existing Rafay account.
     Default: ""
+    NoEcho: true
   FirstName:
     Type: String
     Description: Required if registering a new Rafay account.
@@ -139,7 +137,7 @@ Resources:
       RAFAY_CLUSTER_NAME: !Sub '${EksClusterName}-${AWS::Region}-${AWS::AccountId}'
       RAFAY_PROJECT: !Ref Project
       RAFAY_API_KEY: !If [RegisterNewAccount, !GetAtt RafayCreateOrg.rafay_api_key, !Ref ApiKey]
-      RAFAY_API_SECRET: !Ref ApiSecret
+      RAFAY_API_SECRET: !If [RegisterNewAccount, !GetAtt RafayCreateOrg.rafay_secret_key, !Ref ApiSecret]
       s3_bucket: !If
         - CustomBootstrapBucket
         - !Ref BootstrapBucket
@@ -218,6 +216,12 @@ Resources:
       Code:
         S3Bucket: !Sub [ '${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', { Prefix: !FindInMap [ Config, Prefix, Value ] } ]
         S3Key: !Sub '${QSS3KeyPrefix}functions/packages/aws_qs_create_org/aws_qs_create_org.zip'
+  RafaySecret:
+    Type: AWS::SecretsManager::Secret
+    Condition: RegisterNewAccount
+    Properties:
+      Name: !Sub 'Rafay-${EksClusterName}'
+      SecretString: !Sub '{ "ApiKey": "$(RafayCreateOrg.rafay_api_key}", "SecretKey": "$(RafayCreateOrg.rafay_secret_key}" }'
 Outputs:
   BootstrapManifestUri:
     Value: !Sub 's3://${RafayCreateCluster.rafay_s3_bucket}/${RafayCreateCluster.rafay_s3_key}'
