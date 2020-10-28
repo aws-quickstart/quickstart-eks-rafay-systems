@@ -1,6 +1,5 @@
 # TODO:
 # QuickStart:
-# Rules
 # secret key should come from ssm parameter store, and be placed there if generated
 
 # Rafay:
@@ -25,6 +24,8 @@ Metadata:
           default: Rafay cluster configuration
         Parameters:
           - Project
+          - BootstrapBucket
+          - BootstrapKey
       - Label:
           default: Register new Rafay account
         Parameters:
@@ -63,6 +64,10 @@ Metadata:
         default: Quick Start S3 bucket name
       QSS3KeyPrefix:
         default: Quick Start S3 key prefix
+      BootstrapBucket:
+        default: Bootstrap S3 bucket
+      BootstrapKey:
+        default: Bootstrap S3 key
   LintSpellExclude:
     - Rafay
     - Namespace
@@ -158,7 +163,6 @@ Resources:
       ClusterName: !Ref EksClusterName
       Namespace: kube-system
       Url: !Sub 's3://${RafayCreateCluster.rafay_s3_bucket}/${RafayCreateCluster.rafay_s3_key}'
-
   CopyZips:
     Type: Custom::CopyZips
     Properties:
@@ -220,38 +224,38 @@ Outputs:
   RafayApiKey:
     Value: !If [RegisterNewAccount, !GetAtt RafayCreateOrg.rafay_api_key, !Ref ApiKey]
 # Validation rules are in-progress
-#Rules:
-#  AssertNewUser:
-#    RuleCondition: !And
-#      - !Not [!Equals [!Ref FirstName, '']]
-#      - !Not [!Equals [!Ref LastName, '']]
-#      - !Not [!Equals [!Ref OrganizationName, '']]
-#      - !Not [!Equals [!Ref Email, '']]
-#    Assertions:
-#      - Assert: !And
-#          - !Equals [!Ref ApiKey, '']
-#          - !Equals [!Ref ApiSecret, '']
-#        AssertDescription: 'When creating a new Rafay account "API key" and "API secret" must be blank'
-#  AssertExistingUser:
-#    RuleCondition: !And
-#      - !Not [!Equals [!Ref ApiKey, '']]
-#      - !Not [!Equals [!Ref ApiSecret, '']]
-#    Assertions:
-#      - Assert: !And
-#          - !Equals [!Ref FirstName, '']
-#          - !Equals [!Ref LastName, '']
-#          - !Equals [!Ref OrganizationName, '']
-#          - !Equals [!Ref Email, '']
-#        AssertDescription: 'When using an existing Rafay account "First name", "Last name", "Organization name", and "Email" must be blank'
-#  AssertUser:
-#    Assertions:
-#      - Assert: !Or
-#        - !And
-#          - !Equals [!Ref ApiKey, '']
-#          - !Equals [!Ref ApiSecret, '']
-#        - !And
-#          - !Equals [!Ref FirstName, '']
-#          - !Equals [!Ref LastName, '']
-#          - !Equals [!Ref OrganizationName, '']
-#          - !Equals [!Ref Email, '']
-#        AssertDescription: 'Either "Register new Rafay account" or "Use existing Rafay account" must be completed'
+Rules:
+  AssertNewUser:
+    RuleCondition: !And
+      - !Not [!Equals [!Ref FirstName, '']]
+      - !Not [!Equals [!Ref LastName, '']]
+      - !Not [!Equals [!Ref OrganizationName, '']]
+      - !Not [!Equals [!Ref Email, '']]
+    Assertions:
+      - Assert: !And
+          - !Equals [!Ref ApiKey, '']
+          - !Equals [!Ref ApiSecret, '']
+        AssertDescription: 'When creating a new Rafay account "API key" and "API secret" must be blank'
+  AssertExistingUser:
+    RuleCondition: !And
+      - !Not [!Equals [!Ref ApiKey, '']]
+      - !Not [!Equals [!Ref ApiSecret, '']]
+    Assertions:
+      - Assert: !And
+          - !Equals [!Ref FirstName, '']
+          - !Equals [!Ref LastName, '']
+          - !Equals [!Ref OrganizationName, '']
+          - !Equals [!Ref Email, '']
+        AssertDescription: 'When using an existing Rafay account "First name", "Last name", "Organization name", and "Email" must be blank'
+  AssertUser:
+    Assertions:
+      - Assert: !Or
+        - !And
+          - !Not [!Equals [!Ref ApiKey, '']]
+          - !Not [!Equals [!Ref ApiSecret, '']]
+        - !And
+          - !Not [!Equals [!Ref FirstName, '']]
+          - !Not [!Equals [!Ref LastName, '']]
+          - !Not [!Equals [!Ref OrganizationName, '']]
+          - !Not [!Equals [!Ref Email, '']]
+        AssertDescription: 'Either "Register new Rafay account" or "Use existing Rafay account" sections must be completed'
