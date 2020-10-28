@@ -1,10 +1,7 @@
 # TODO:
 # QuickStart:
 # Rules
-# Outputs
-# parameter for optionally providing a bucket/key to store the bootstrap file
 # secret key should come from ssm parameter store, and be placed there if generated
-# add boto layer to create_cluster
 
 # Rafay:
 # Delete method for Rafay cluster to cleanup s3 object
@@ -24,11 +21,9 @@ Metadata:
           default: EKS cluster configuration
         Parameters:
           - EksClusterName
-          - Namespace
       - Label:
           default: Rafay cluster configuration
         Parameters:
-          - RafayClusterName
           - Project
       - Label:
           default: Register new Rafay account
@@ -48,12 +43,8 @@ Metadata:
           - QSS3BucketName
           - QSS3KeyPrefix
     ParameterLabels:
-      Namespace:
-        default: Namespace
       EksClusterName:
         default: EKS cluster name
-      RafayClusterName:
-        default: Rafay cluster name
       Project:
         default: Rafay project
       FirstName:
@@ -83,6 +74,14 @@ Parameters:
     Type: String
     Description: TODO
     Default: "defaultproject"
+  BootstrapBucket:
+    Type: String
+    Description: "(Optional) S3 bucket to place the the rafay bootstrap yaml file. If left blank the EKS Quick Start bucket will be used."
+    Default: ""
+  BootstrapKey:
+    Type: String
+    Description: "(Optional) S3 key to place the the rafay bootstrap yaml file. If left blank the key will be rafay/<CLUSTER_NAME>/cluster-bootstrap.yaml."
+    Default: ""
   ApiKey:
     Type: String
     Description: Required if using an existing Rafay account.
@@ -122,6 +121,8 @@ Parameters:
 Conditions:
   RegisterNewAccount: !Equals [!Ref ApiKey, ""]
   UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
+  CustomBootstrapBucket: !Not [!Equals [!Ref BootstrapBucket, ""]]
+  CustomBootstrapKey: !Not [!Equals [!Ref BootstrapKey, ""]]
 Mappings:
   Config:
     Prefix: { Value: 'eks-quickstart' }
@@ -134,7 +135,14 @@ Resources:
       RAFAY_PROJECT: !Ref Project
       RAFAY_API_KEY: !If [RegisterNewAccount, !GetAtt RafayCreateOrg.rafay_api_key, !Ref ApiKey]
       RAFAY_API_SECRET: !Ref ApiSecret
-      s3_bucket: !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
+      s3_bucket: !If
+        - CustomBootstrapBucket
+        - !Ref BootstrapBucket
+        - !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
+      s3_key: !If
+        - CustomBootstrapKey
+        - !Ref BootstrapKey
+        - !Sub "rafay/${EksClusterName}/cluster-bootstrap.yaml"
   RafayCreateOrg:
     Type: "Custom::RafayOrg"
     Condition: RegisterNewAccount
