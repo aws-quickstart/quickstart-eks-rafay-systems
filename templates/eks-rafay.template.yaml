@@ -1,11 +1,3 @@
-# TODO:
-# Rafay:
-# Delete method for Rafay cluster to cleanup s3 object
-# lint python files
-# function to lowercase the passed in name
-# create_cluster should accept s3_key as an input
-# Review parameter Descriptions
-
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Deploys the Rafay System helm chart into an existing kubernetes cluster (qsID)"
 Metadata:
@@ -236,30 +228,33 @@ Rules:
       - !Not [!Equals [!Ref OrganizationName, '']]
       - !Not [!Equals [!Ref Email, '']]
     Assertions:
-      - Assert: !And
-          - !Equals [!Ref ApiKey, '']
-          - !Equals [!Ref ApiSecret, '']
-        AssertDescription: 'When creating a new Rafay account "API key" and "API secret" must be blank'
+      - Assert: !Equals [!Ref ApiKey, '']
+        AssertDescription: 'When creating a new Rafay account "API key" must be blank'
+      - Assert: !Equals [!Ref ApiSecret, '']
+        AssertDescription: 'When creating a new Rafay account "API secret" must be blank'
   AssertExistingUser:
     RuleCondition: !And
       - !Not [!Equals [!Ref ApiKey, '']]
       - !Not [!Equals [!Ref ApiSecret, '']]
     Assertions:
-      - Assert: !And
-          - !Equals [!Ref FirstName, '']
-          - !Equals [!Ref LastName, '']
-          - !Equals [!Ref OrganizationName, '']
-          - !Equals [!Ref Email, '']
-        AssertDescription: 'When using an existing Rafay account "First name", "Last name", "Organization name", and "Email" must be blank'
+      - Assert: !Equals [!Ref FirstName, '']
+        AssertDescription: 'When using an existing Rafay account "First name" must be blank'
+      - Assert: !Equals [!Ref LastName, '']
+        AssertDescription: 'When using an existing Rafay account "Last name" must be blank'
+      - Assert: !Equals [!Ref OrganizationName, '']
+        AssertDescription: 'When using an existing Rafay account "Organization name" must be blank'
+      - Assert: !Equals [!Ref Email, '']
+        AssertDescription: 'When using an existing Rafay account "Email" must be blank'
   AssertUser:
+    RuleCondition: !Not [!Equals [!Ref EksClusterName, '']]
     Assertions:
       - Assert: !Or
-        - !And
-          - !Not [!Equals [!Ref ApiKey, '']]
-          - !Not [!Equals [!Ref ApiSecret, '']]
-        - !And
-          - !Not [!Equals [!Ref FirstName, '']]
-          - !Not [!Equals [!Ref LastName, '']]
-          - !Not [!Equals [!Ref OrganizationName, '']]
-          - !Not [!Equals [!Ref Email, '']]
+          - !And
+            - !Not [!Equals [!Ref ApiKey, '']]
+            - !Not [!Equals [!Ref ApiSecret, '']]
+          - !And
+            - !Not [!Equals [!Ref FirstName, '']]
+            - !Not [!Equals [!Ref LastName, '']]
+            - !Not [!Equals [!Ref OrganizationName, '']]
+            - !Not [!Equals [!Ref Email, '']]
         AssertDescription: 'Either "Register new Rafay account" or "Use existing Rafay account" sections must be completed'
