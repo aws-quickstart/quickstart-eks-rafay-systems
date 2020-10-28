@@ -1,14 +1,18 @@
-# QUESTIONS:
-# Should Rafay cluster name == EKS cluster name
-# Can we join an existing cluster
-# Confirm default value for Project
-
 # TODO:
+# QuickStart:
 # Rules
 # Outputs
-# Delete method for Rafay cluster to cleanup s3 object
-# parameter for optionally providing a bucket to store the bootstrap file
+# parameter for optionally providing a bucket/key to store the bootstrap file
 # secret key should come from ssm parameter store, and be placed there if generated
+# add boto layer to create_cluster
+
+# Rafay:
+# Delete method for Rafay cluster to cleanup s3 object
+# lint python files
+# function to lowercase the passed in name
+# create_cluster should accept s3_key as an input
+# Review parameter Descriptions
+
 AWSTemplateFormatVersion: "2010-09-09"
 Description: "Deploys the Rafay System helm chart into an existing kubernetes cluster (qsID)"
 Metadata:
@@ -75,16 +79,10 @@ Parameters:
   EksClusterName:
     Type: String
     Description: Name of the EKS cluster to deploy Rafay to.
-  Namespace:
-    Type: String
-    Description: Namespace to deploy Rafay to.
-  RafayClusterName:
-    Type: String
-    Description: TODO
   Project:
     Type: String
-    Description: TDOD
-    Default: "default"
+    Description: TODO
+    Default: "defaultproject"
   ApiKey:
     Type: String
     Description: Required if using an existing Rafay account.
@@ -121,9 +119,6 @@ Parameters:
     Default: quickstart-amazon-eks/submodules/quickstart-eks-rafay/
     Description: S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), periods (.) and forward slash (/).
     Type: String
-Rules:
-  ExistingAccountValidation: {}
-  NewAccountValidation: {}
 Conditions:
   RegisterNewAccount: !Equals [!Ref ApiKey, ""]
   UsingDefaultBucket: !Equals [!Ref QSS3BucketName, 'aws-quickstart']
@@ -135,9 +130,9 @@ Resources:
     Type: "Custom::RafayCluster"
     Properties:
       ServiceToken: !GetAtt RafayCreateClusterFunction.Arn
-      RAFAY_CLUSTER_NAME: !Ref RafayClusterName
+      RAFAY_CLUSTER_NAME: !Sub '${EksClusterName}-${AWS::Region}-${AWS::AccountId}'
       RAFAY_PROJECT: !Ref Project
-      RAFAY_API_KEY: !Ref ApiKey
+      RAFAY_API_KEY: !If [RegisterNewAccount, !GetAtt RafayCreateOrg.rafay_api_key, !Ref ApiKey]
       RAFAY_API_SECRET: !Ref ApiSecret
       s3_bucket: !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
   RafayCreateOrg:
@@ -153,8 +148,9 @@ Resources:
     Type: "AWSQS::Kubernetes::Resource"
     Properties:
       ClusterName: !Ref EksClusterName
-      Namespace: !Ref Namespace
+      Namespace: kube-system
       Url: !Sub 's3://${RafayCreateCluster.rafay_s3_bucket}/${RafayCreateCluster.rafay_s3_key}'
+
   CopyZips:
     Type: Custom::CopyZips
     Properties:
@@ -187,7 +183,9 @@ Resources:
       Role: !Sub ["arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${Prefix}-CopyZips", {Prefix: !FindInMap [Config, Prefix, Value]}]
       Runtime: python3.7
       Timeout: 900
-      Layers: [!Sub ['${Prefix}-Crhelper', {Prefix: !FindInMap [Config, Prefix, Value]}], !Ref RctlLayer]
+      Layers:
+        - !Sub ['arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:layer:${Prefix}-Crhelper:1', {Prefix: !FindInMap [Config, Prefix, Value]}]
+        - !Ref RctlLayer
       Code:
         S3Bucket: !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
         S3Key: !Sub '${QSS3KeyPrefix}functions/packages/aws_qs_create_cluster/aws_qs_create_cluster.zip'
@@ -202,7 +200,50 @@ Resources:
       Role: !Sub ["arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${Prefix}-CopyZips", {Prefix: !FindInMap [Config, Prefix, Value]}]
       Runtime: python3.7
       Timeout: 900
-      Layers: [!Sub ['${Prefix}-Crhelper', {Prefix: !FindInMap [Config, Prefix, Value]}], !Ref RctlLayer]
+      Layers:
+        - !Sub ['arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:layer:${Prefix}-Crhelper:1', {Prefix: !FindInMap [Config, Prefix, Value]}]
+        - !Ref RctlLayer
       Code:
         S3Bucket: !Sub [ '${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', { Prefix: !FindInMap [ Config, Prefix, Value ] } ]
         S3Key: !Sub '${QSS3KeyPrefix}functions/packages/aws_qs_create_org/aws_qs_create_org.zip'
+Outputs:
+  BootstrapManifestUri:
+    Value: !Sub 's3://${RafayCreateCluster.rafay_s3_bucket}/${RafayCreateCluster.rafay_s3_key}'
+  RafayApiKey:
+    Value: !If [RegisterNewAccount, !GetAtt RafayCreateOrg.rafay_api_key, !Ref ApiKey]
+# Validation rules are in-progress
+#Rules:
+#  AssertNewUser:
+#    RuleCondition: !And
+#      - !Not [!Equals [!Ref FirstName, '']]
+#      - !Not [!Equals [!Ref LastName, '']]
+#      - !Not [!Equals [!Ref OrganizationName, '']]
+#      - !Not [!Equals [!Ref Email, '']]
+#    Assertions:
+#      - Assert: !And
+#          - !Equals [!Ref ApiKey, '']
+#          - !Equals [!Ref ApiSecret, '']
+#        AssertDescription: 'When creating a new Rafay account "API key" and "API secret" must be blank'
+#  AssertExistingUser:
+#    RuleCondition: !And
+#      - !Not [!Equals [!Ref ApiKey, '']]
+#      - !Not [!Equals [!Ref ApiSecret, '']]
+#    Assertions:
+#      - Assert: !And
+#          - !Equals [!Ref FirstName, '']
+#          - !Equals [!Ref LastName, '']
+#          - !Equals [!Ref OrganizationName, '']
+#          - !Equals [!Ref Email, '']
+#        AssertDescription: 'When using an existing Rafay account "First name", "Last name", "Organization name", and "Email" must be blank'
+#  AssertUser:
+#    Assertions:
+#      - Assert: !Or
+#        - !And
+#          - !Equals [!Ref ApiKey, '']
+#          - !Equals [!Ref ApiSecret, '']
+#        - !And
+#          - !Equals [!Ref FirstName, '']
+#          - !Equals [!Ref LastName, '']
+#          - !Equals [!Ref OrganizationName, '']
+#          - !Equals [!Ref Email, '']
+#        AssertDescription: 'Either "Register new Rafay account" or "Use existing Rafay account" must be completed'
