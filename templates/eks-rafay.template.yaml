@@ -4,6 +4,9 @@ Metadata:
   QuickStartDocumentation:
     EntrypointName: "Launch into an existing EKS cluster"
     Order: 1
+    OptionalParameters:
+      - BootstrapBucket
+      - BootstrapKey
   AWS::CloudFormation::Interface:
     ParameterGroups:
       - Label:
