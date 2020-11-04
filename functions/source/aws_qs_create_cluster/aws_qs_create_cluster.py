@@ -18,7 +18,7 @@ def create_rafay_cluster(api_key, api_secret, rafay_project, rafay_cluster_name,
     os.environ["RCTL_API_KEY"] = api_key
     os.environ["RCTL_API_SECRET"] = api_secret
     os.environ["RCTL_PROJECT"] = rafay_project
-    os.environ["RCTL_REST_ENDPOINT"] = "console.rafay.dev"
+    os.environ["RCTL_REST_ENDPOINT"] = "console.stage.rafay.dev"
     rctl_cluster_name = rafay_cluster_name
     file_path = '/tmp/' + rctl_cluster_name + '-bootstrap.yaml'
     # create an imported cluster in Rafay to get bootstrap configuration 
