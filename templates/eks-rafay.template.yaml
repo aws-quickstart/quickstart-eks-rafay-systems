@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "Deploys the Rafay System helm chart into an existing kubernetes cluster (qsID)"
+Description: "Deploys the Rafay System helm chart into an existing kubernetes cluster (qs-1r9rrs0h6)"
 Metadata:
   QuickStartDocumentation:
     EntrypointName: "Launch into an existing EKS cluster"
