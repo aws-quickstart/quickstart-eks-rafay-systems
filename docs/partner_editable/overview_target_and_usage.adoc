@@ -4,4 +4,4 @@
 
 This guide provides instructions for deploying the {partner-product-short-name} Quick Start reference architecture on the AWS Cloud.
 
-This Quick Start is for users who <target audience and usage scenario>
+This Quick Start is for IT/Cloud/Developer Operations professionals who are looking to rapidly deploy a fully functional Kubernetes infrastructure to assist in the management of containerized applications located in AWS, data centers, and at the network’s edge. With the MKP, organizations are able to leverage critical enterprise-grade requirements such as global visibility, security, governance and ease of overall management of Kubernetes clusters – all from a single management console.

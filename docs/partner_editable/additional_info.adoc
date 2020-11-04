@@ -15,9 +15,84 @@ _Add any best practices for using the software._
 == Security
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
 
-_Add any security-related information._
+Here are several important considerations related to the Rafay Systems Managed Kubernetes Platform.
+
+=== Roles-Based Access Control & Amazon IAM
+
+=== With Rafay, you can fully automate the provisioning and ongoing lifecycle management of Amazon EKS clusters in all supported AWS regions.
+
+=== With auto provisioning, you can have a cluster operational in just a few clicks. In order to do this, you need to provide credentials that allow programmatic access to Amazon AWS.
+
+=== Two types of credentials are supported: IAM Role & IAM User. For more information on how to create and configure these credentials for use with the MKP, please see the MKP Documentation: https://docs.rafay.co/clusters/provision/eks/credentials/
+
+=== Email Whitelisting
+
+A 3rd Party service is used for emails sent by the Controller (i.e. for first time user activation, password resets, notifications etc.). To guarantee delivery of emails from the SaaS Controller to users in the Tenant/Organization, we strongly recommend that customers "whitelist" the IP address used for sending emails in their inbound email security systems.
+
+The dedicated IP address currently used for sending emails from the Rafay Controller is "149.72.39.92".
+
+=== Network Firewall Rules
+
+The Rafay Controller has been specially designed so that customers can deploy and manage their clusters in both Internet (public IP) and on-premises (private IP) type environments.
+
+To onboard an on-premise or cloud-based cluster onto the Rafay Controller for ongoing operations and lifecycle management:
+
+* A “Kubernetes Operator” is installed on each managed cluster.
+* This establishes and maintains a "long running" outbound TLS based control channel to the Rafay Controller (hosted in Amazon Web Services (AWS) for SaaS).
+* No inbound ports need to be opened on the customer's external firewall for Rafay control plane traffic.
+
+The Rafay Kubernetes Operator uses only "TCP Port 443, Outbound" to communicate with the Rafay Controller.
+
+=== Controller Details
+
+== Customers that wish to lock down communication further can optionally whitelist the IP addresses of the SaaS Rafay Controller in their firewalls to ensure that outbound connectivity is only allowed to these IPs. The SaaS Rafay Controller is currently deployed in a highly available manner across three availability zones (AZ) on AWS.
+
+*IP Addresses*
+
+The three IP Addresses for the Rafay Controller that the managed clusters communicate with are:
+
+[cols=",",options="header",]
+|===
+|Server |IP Address
+|IP Address 1 |52.42.211.235
+|IP Address 2 |52.10.6.79
+|IP Address 3 |35.167.70.143
+|===
+
+*Front End/APIs Server IP Addresses*
+
+End users can access the Rafay SaaS Controller via a web browser, CLI or REST APIs. The Rafay Controller front end is hosted on the following IP addresses.
+
+[cols=",",options="header",]
+|===
+|Server |IP Address
+|IP Address 1 |34.217.228.75
+|IP Address 2 |35.162.136.39
+|IP Address 3 |35.162.246.49
+|===
+
+*Controller FQDNs*
+
+The Rafay k8s operator components will access the Rafay Controller on the following FQDNs. Add these to your firewall's whitelist if necessary.
+
+[cols="",options="header",]
+|===
+|tunnel.rafay-edge.net
+|api.rafay.dev
+|control.rafay.dev
+|fluentd-aggr.rafay-edge.net
+|influxdb01.core.rafay-edge.net
+|debug.core.rafay-edge.net
+|edge.core.rafay-edge.net
+|registry.rafay-edge.net
+|app.rafay.dev
+|console.rafay.dev
+|*.connector.kubeapi-proxy.rafay.dev
+|===
 
 == Other useful information
 //Provide any other information of interest to users, especially focusing on areas where AWS or cloud usage differs from on-premises usage.
 
-_Add any other details that will help the customer use the software on AWS._
+*{partner-product-short-name} documentation*
+
+* https://docs.rafay.co/[Managed Kubernetes Platform Documentation]
