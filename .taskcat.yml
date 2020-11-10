@@ -3,6 +3,15 @@ project:
   owner: quickstart-eng@amazon.com
   regions: ["us-west-2"]
   template: templates/eks-rafay.template.yaml
-  parameters: {}
+  lambda_source_path: functions/source
+  lambda_zip_path: functions/packages
+  parameters:
+    QSS3BucketName: $[taskcat_autobucket]
+    QSS3KeyPrefix: quickstart-eks-rafay-systems/
+    EksClusterName: --override--
+    FirstName: --override--
+    LastName: --override--
+    OrganizationName: --override--
+    Email: --override--
 tests:
   defaults: {}

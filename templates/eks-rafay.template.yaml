@@ -178,7 +178,7 @@ Resources:
         - python3.7
       Content:
         S3Bucket:  !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
-        S3Key: !Sub '${QSS3KeyPrefix}functions/packages/crhelperLayer/lambda.zip'
+        S3Key: !Sub '${QSS3KeyPrefix}functions/packages/rctlLayer/lambda.zip'
   RafayCreateClusterFunction:
     Type: AWS::Lambda::Function
     DependsOn: CopyZips
@@ -190,7 +190,7 @@ Resources:
       Runtime: python3.7
       Timeout: 900
       Layers:
-        - !Sub ['arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:layer:${Prefix}-Crhelper:1', {Prefix: !FindInMap [Config, Prefix, Value]}]
+        - !Ref GetCrhelperLayerArn
         - !Ref RctlLayer
       Code:
         S3Bucket: !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
@@ -207,7 +207,7 @@ Resources:
       Runtime: python3.7
       Timeout: 900
       Layers:
-        - !Sub ['arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:layer:${Prefix}-Crhelper:1', {Prefix: !FindInMap [Config, Prefix, Value]}]
+        - !Ref GetCrhelperLayerArn
         - !Ref RctlLayer
       Code:
         S3Bucket: !Sub [ '${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', { Prefix: !FindInMap [ Config, Prefix, Value ] } ]
@@ -218,6 +218,15 @@ Resources:
     Properties:
       Name: !Sub 'Rafay-${EksClusterName}'
       SecretString: !Sub '{ "ApiKey": "$(RafayCreateOrg.rafay_api_key}", "SecretKey": "$(RafayCreateOrg.rafay_secret_key}" }'
+  GetCrhelperLayerArn:
+    Type: Custom::CliQuery
+    Properties:
+      ServiceToken: !Sub ['arn:${AWS::Partition}:lambda:${AWS::Region}:${AWS::AccountId}:function:${Prefix}-ResourceReader', {Prefix: !FindInMap [Config, Prefix, Value]}]
+      AwsCliCommand: !Sub
+        - |
+          lambda list-layer-versions --layer-name ${Prefix}-Crhelper --query 'max_by(LayerVersions, &Version)'
+        - Prefix: !FindInMap [Config, Prefix, Value]
+      IdField: 'LayerVersionArn'
 Outputs:
   BootstrapManifestUri:
     Value: !Sub 's3://${RafayCreateCluster.rafay_s3_bucket}/${RafayCreateCluster.rafay_s3_key}'

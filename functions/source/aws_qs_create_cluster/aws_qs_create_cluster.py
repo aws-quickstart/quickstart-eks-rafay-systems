@@ -35,29 +35,34 @@ def create_rafay_cluster(api_key, api_secret, rafay_project, rafay_cluster_name,
                 logger.error("cluster creation failed", exc_info=True)
     except Exception as e:
         logger.error(str(e), exc_info=True)
+        raise
 
 
 @helper.create
 def create(event, _):
     try:
-        s3_bucket, s3_key = create_rafay_cluster(event['RAFAY_API_KEY'], event['RAFAY_API_SECRET'],
-                                                 event['RAFAY_PROJECT'],
-                                                 event['RAFAY_CLUSTER_NAME'], event['s3_bucket'], event['s3_key'])
+        props = event['ResourceProperties']
+        s3_bucket, s3_key = create_rafay_cluster(props['RAFAY_API_KEY'], props['RAFAY_API_SECRET'],
+                                                 props['RAFAY_PROJECT'],
+                                                 props['RAFAY_CLUSTER_NAME'], props['s3_bucket'], props['s3_key'])
         helper.Data['rafay_s3_bucket'] = s3_bucket
         helper.Data['rafay_s3_key'] = s3_key
         return s3_bucket, s3_key
     except Exception as e:
         logger.error(str(e), exc_info=True)
-        return "Cluster Creation Failed"
+        logger.error("Cluster Creation Failed")
+        raise
 
 
 @helper.delete
 def delete(event, _):
     try:
-        s3_client.delete_object(Bucket=event['s3_bucket'], Key=event['s3_key'])
+        props = event['ResourceProperties']
+        s3_client.delete_object(Bucket=props['s3_bucket'], Key=props['s3_key'])
     except Exception as e:
         logger.error(str(e), exc_info=True)
-        return "S3 Object Delete Failed"
+        logger.error("S3 Object Delete Failed")
+        raise
 
 
 def lambda_handler(event, context):
