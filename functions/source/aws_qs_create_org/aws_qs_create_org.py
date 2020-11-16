@@ -46,7 +46,7 @@ def create_rafay_org(email, org_name, first_name, last_name):
     # get Rafay API key
     rafay_apikey_url = "https://" + rafay_console + "/auth/v1/users/" + user_id + "/apikey/"
     r = requests.post(rafay_apikey_url,
-                      headers={'content-type': 'application/json;charset=UTF-8',
+                      headers={'referer': "https://" + rafay_console,'content-type': 'application/json;charset=UTF-8',
                                'cookie': 'rsid=' + r.cookies['rsid'] + ';csrftoken=' + r.cookies['csrftoken'],
                                'x-csrftoken': r.cookies['csrftoken']},
                       data=json.dumps({"name": "dynamic"}))
