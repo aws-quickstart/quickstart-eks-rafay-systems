@@ -24,45 +24,31 @@ def create_rafay_cluster(api_key, api_secret, rafay_project, rafay_cluster_name,
     # create an imported cluster in Rafay to get bootstrap configuration 
     cluster_cmd = "rctl create cluster imported " + rctl_cluster_name + " -l aws/" + os.environ["AWS_REGION"] + \
                   " > " + file_path
-    try:
-        subprocess.call(cluster_cmd, shell=True)
-        with open(file_path) as f:
-            if 'cluster.rafay.dev' in f.read():
-                s3_client.upload_file(file_path, s3_bucket, s3_key)
-                time.sleep(30)
-                return s3_bucket, s3_key
-            else:
-                logger.error("cluster creation failed", exc_info=True)
-    except Exception as e:
-        logger.error(str(e), exc_info=True)
-        raise
+    subprocess.call(cluster_cmd, shell=True)
+    with open(file_path) as f:
+        if 'cluster.rafay.dev' in f.read():
+            s3_client.upload_file(file_path, s3_bucket, s3_key)
+            time.sleep(30)
+            return s3_bucket, s3_key
+        else:
+            logger.error("cluster creation failed", exc_info=True)
 
 
 @helper.create
 def create(event, _):
-    try:
-        props = event['ResourceProperties']
-        s3_bucket, s3_key = create_rafay_cluster(props['RAFAY_API_KEY'], props['RAFAY_API_SECRET'],
-                                                 props['RAFAY_PROJECT'],
-                                                 props['RAFAY_CLUSTER_NAME'], props['s3_bucket'], props['s3_key'])
-        helper.Data['rafay_s3_bucket'] = s3_bucket
-        helper.Data['rafay_s3_key'] = s3_key
-        return s3_bucket, s3_key
-    except Exception as e:
-        logger.error(str(e), exc_info=True)
-        logger.error("Cluster Creation Failed")
-        raise
+    props = event['ResourceProperties']
+    s3_bucket, s3_key = create_rafay_cluster(props['RAFAY_API_KEY'], props['RAFAY_API_SECRET'],
+                                             props['RAFAY_PROJECT'],
+                                             props['RAFAY_CLUSTER_NAME'], props['s3_bucket'], props['s3_key'])
+    helper.Data['rafay_s3_bucket'] = s3_bucket
+    helper.Data['rafay_s3_key'] = s3_key
+    return s3_bucket, s3_key
 
 
 @helper.delete
 def delete(event, _):
-    try:
-        props = event['ResourceProperties']
-        s3_client.delete_object(Bucket=props['s3_bucket'], Key=props['s3_key'])
-    except Exception as e:
-        logger.error(str(e), exc_info=True)
-        logger.error("S3 Object Delete Failed")
-        raise
+    props = event['ResourceProperties']
+    s3_client.delete_object(Bucket=props['s3_bucket'], Key=props['s3_key'])
 
 
 def lambda_handler(event, context):
