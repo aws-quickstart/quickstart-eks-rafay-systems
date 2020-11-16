@@ -24,14 +24,18 @@ def create_rafay_cluster(api_key, api_secret, rafay_project, rafay_cluster_name,
     # create an imported cluster in Rafay to get bootstrap configuration 
     cluster_cmd = "rctl create cluster imported " + rctl_cluster_name + " -l aws/" + os.environ["AWS_REGION"] + \
                   " > " + file_path
-    subprocess.call(cluster_cmd, shell=True)
+    try:
+        subprocess.check_output(cluster_cmd, shell=True, stderr=subprocess.STDOUT)
+    except subprocess.CalledProcessError as e:
+        logger.error(f"rctl command call failed: \n\n{e.output}")
     with open(file_path) as f:
-        if 'cluster.rafay.dev' in f.read():
+        manifest = f.read()
+        if 'cluster.rafay.dev' in manifest:
             s3_client.upload_file(file_path, s3_bucket, s3_key)
             time.sleep(30)
             return s3_bucket, s3_key
         else:
-            logger.error("cluster creation failed", exc_info=True)
+            raise RuntimeError(f"cluster creation failed: {manifest}")
 
 
 @helper.create
