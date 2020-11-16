@@ -3,6 +3,7 @@ import subprocess
 import os
 import time
 import boto3
+from hashlib import sha1
 from crhelper import CfnResource
 
 logger = logging.getLogger(__name__)
@@ -15,6 +16,9 @@ except Exception as init_exception:
 
 
 def create_rafay_cluster(api_key, api_secret, rafay_project, rafay_cluster_name, s3_bucket, s3_key):
+    if len(rafay_cluster_name) > 30:
+        rafay_cluster_name = rafay_cluster_name[:21] + '-' + sha1(rafay_cluster_name.encode('utf-8')).hexdigest()[:8]
+    rafay_cluster_name = rafay_cluster_name.lower()
     os.environ["RCTL_API_KEY"] = api_key
     os.environ["RCTL_API_SECRET"] = api_secret
     os.environ["RCTL_PROJECT"] = rafay_project
