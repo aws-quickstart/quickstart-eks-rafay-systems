@@ -216,8 +216,8 @@ Resources:
     Type: AWS::SecretsManager::Secret
     Condition: RegisterNewAccount
     Properties:
-      Name: !Sub 'Rafay-${EksClusterName}'
-      SecretString: !Sub '{ "ApiKey": "$(RafayCreateOrg.rafay_api_key}", "SecretKey": "$(RafayCreateOrg.rafay_secret_key}" }'
+      Name: !Sub 'Rafay-api-key-${EksClusterName}'
+      SecretString: !Sub '{ "ApiKey": "${RafayCreateOrg.rafay_api_key}", "SecretKey": "${RafayCreateOrg.rafay_secret_key}" }'
   GetCrhelperLayerArn:
     Type: Custom::CliQuery
     Properties:
