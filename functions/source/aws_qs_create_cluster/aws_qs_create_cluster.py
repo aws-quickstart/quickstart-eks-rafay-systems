@@ -11,6 +11,7 @@ helper = CfnResource(json_logging=True, log_level='DEBUG')
 
 try:
     s3_client = boto3.client('s3')
+    ssm_client = boto3.client('ssm')
 except Exception as init_exception:
     helper.init_failure(init_exception)
 
@@ -22,7 +23,11 @@ def create_rafay_cluster(api_key, api_secret, rafay_project, rafay_cluster_name,
     os.environ["RCTL_API_KEY"] = api_key
     os.environ["RCTL_API_SECRET"] = api_secret
     os.environ["RCTL_PROJECT"] = rafay_project
-    os.environ["RCTL_REST_ENDPOINT"] = "console.stage.rafay.dev"
+    try:
+        endpoint = ssm_client.get_parameter(Name='/quickstart/rafay/endpoint')['Parameter']['Value']
+    except ssm_client.exceptions.ParameterNotFound:
+        endpoint = "rafay.dev"
+    os.environ["RCTL_REST_ENDPOINT"] = f"console.{endpoint}"
     rctl_cluster_name = rafay_cluster_name
     file_path = '/tmp/' + rctl_cluster_name + '-bootstrap.yaml'
     # create an imported cluster in Rafay to get bootstrap configuration 

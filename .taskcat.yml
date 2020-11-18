@@ -9,9 +9,14 @@ project:
     QSS3BucketName: $[taskcat_autobucket]
     QSS3KeyPrefix: quickstart-eks-rafay-systems/
     EksClusterName: --override--
-    FirstName: --override--
-    LastName: --override--
-    OrganizationName: --override--
-    Email: --override--
 tests:
-  defaults: {}
+  new-customer:
+    parameters:
+      FirstName: --override--
+      LastName: --override--
+      OrganizationName: --override--
+      Email: --override--
+  existing-customer:
+    parameters:
+      ApiKey: --override--
+      ApiSecret: --override--

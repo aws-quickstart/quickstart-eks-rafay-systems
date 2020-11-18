@@ -179,14 +179,45 @@ Resources:
       Content:
         S3Bucket:  !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
         S3Key: !Sub '${QSS3KeyPrefix}functions/packages/rctlLayer/lambda.zip'
+  RafayLambdaRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+            Action: sts:AssumeRole
+      ManagedPolicyArns:
+        - !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+      Policies:
+        - PolicyName: 'rafay'
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Effect: Allow
+                Action: [s3:PutObject, s3:DeleteObject]
+                Resource: !Sub
+                - "arn:${AWS::Partition}:s3:::${s3_bucket}/${s3_key}"
+                - s3_bucket: !If
+                    - CustomBootstrapBucket
+                    - !Ref BootstrapBucket
+                    - !Sub ['${Prefix}-lambdazips-${AWS::Region}-${AWS::AccountId}', {Prefix: !FindInMap [Config, Prefix, Value]}]
+                  s3_key: !If
+                    - CustomBootstrapKey
+                    - !Ref BootstrapKey
+                    - !Sub "rafay/${EksClusterName}/cluster-bootstrap.yaml"
+              - Effect: Allow
+                Action: [ssm:GetParameter]
+                Resource: !Sub 'arn:${AWS::Partition}:ssm:${AWS::Region}:${AWS::AccountId}:parameter/quickstart/rafay/*'
   RafayCreateClusterFunction:
     Type: AWS::Lambda::Function
     DependsOn: CopyZips
     Properties:
-      FunctionName: !Sub 'aws-qs-create-cluster-${EksClusterName}'
       Handler: aws_qs_create_cluster.lambda_handler
       MemorySize: 256
-      Role: !Sub ["arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${Prefix}-CopyZips", {Prefix: !FindInMap [Config, Prefix, Value]}]
+      Role: !GetAtt RafayLambdaRole.Arn
       Runtime: python3.7
       Timeout: 900
       Layers:
@@ -200,10 +231,9 @@ Resources:
     Condition: RegisterNewAccount
     DependsOn: CopyZips
     Properties:
-      FunctionName: !Sub 'aws-qs-create-org-${EksClusterName}'
       Handler: aws_qs_create_org.lambda_handler
       MemorySize: 256
-      Role: !Sub ["arn:${AWS::Partition}:iam::${AWS::AccountId}:role/${Prefix}-CopyZips", {Prefix: !FindInMap [Config, Prefix, Value]}]
+      Role: !GetAtt RafayLambdaRole.Arn
       Runtime: python3.7
       Timeout: 900
       Layers:
