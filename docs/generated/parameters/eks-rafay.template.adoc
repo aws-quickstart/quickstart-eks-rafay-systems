@@ -3,15 +3,15 @@
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|EKS cluster name
-(`EksClusterName`)|`**__Requires input__**`|Name of the EKS cluster to deploy Rafay to.|Namespace
-(`Namespace`)|`**__Requires input__**`|Namespace to deploy Rafay to.
+(`EksClusterName`)|`**__Requires input__**`|Name of the EKS cluster to deploy Rafay to.
 |===
 .Rafay cluster configuration
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
-|Parameter label (name) |Default value|Description|Rafay cluster name
-(`RafayClusterName`)|`**__Requires input__**`|TODO|Rafay project
-(`Project`)|`default`|TDOD
+|Parameter label (name) |Default value|Description|Rafay project
+(`Project`)|`defaultproject`|TODO|Bootstrap S3 bucket
+(`BootstrapBucket`)|`**__Blank string__**`|(Optional) S3 bucket to place the the rafay bootstrap yaml file. If left blank the EKS Quick Start bucket will be used.|Bootstrap S3 key
+(`BootstrapKey`)|`**__Blank string__**`|(Optional) S3 key to place the the rafay bootstrap yaml file. If left blank the key will be rafay/<CLUSTER_NAME>/cluster-bootstrap.yaml.
 |===
 .Register new Rafay account
 [width="100%",cols="16%,11%,73%",options="header",]

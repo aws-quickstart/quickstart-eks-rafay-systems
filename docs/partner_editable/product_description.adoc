@@ -2,4 +2,21 @@
 // Briefly describe the software. Use consistent and clear branding. 
 // Include the benefits of using the software on AWS, and provide details on usage scenarios.
 
-<Describe how the software works on AWS.>
+=== MKP on AWS
+
+Rafay allows users to provision Kubernetes clusters on both "public cloud" and "on-premises" environments. Rafay provides streamlined provisioning approaches that allow users to bring up a "managed" Kubernetes cluster:
+
+*Automatically Provisioned* clusters are primarily designed for public cloud environments where core infrastructure (compute, storage, networking) can be programmatically created and configured by Rafay. This is designed to be a completely automated, zero touch experience for the user. This approach is currently supported for Amazon AWS EC2 and Amazon EKS public cloud environments. For High Availability (HA) clusters, Rafay automatically provisions the "master nodes" on different Availability Zones (AZ).
+
+*Manually Provisioned* clusters are agnostic to the type and provider of the underlying infrastructure and mostly used for clusters running on bare metal and virtual machines (VMs). With this approach, customers are responsible for the underlying hardware and the Operating System (OS) for the nodes.
+
+Existing clusters (within a datacenter, for example) can also be imported to the MKP.
+
+Once all clusters have been provisioned and/or imported, the MKP provides a single console that provides visibility and management of applications and clusters across the entire infrastructure. The benefits of this include:
+
+*Single Pane of Glass Management Across AWS Regions & On-Prem*: Leverage a single, consistent console to easily deploy, view and manage clusters and workloads across all your clusters, deployed on-premises and across all regions on AWS
+
+*Accelerate Migration To AWS:* With Rafay, Amazon EKS clusters are up and running in minutes (including spot instances), and applications can be deployed in even less time.
+
+*Apply Enterprise-Grade K8s Security In AWS*: Rafay’s Zero-Trust Architecture for Kubernetes enables enterprises to cloak their Kubernetes API endpoints on AWS without impacting CI/CD and developer workflows.
+

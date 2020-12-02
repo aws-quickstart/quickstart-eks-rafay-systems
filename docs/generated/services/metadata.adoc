@@ -1,12 +1,18 @@
 
+:template_aws_iam_role:
 :template_aws_lambda_function:
 :template_aws_lambda_layerversion:
+:template_aws_secretsmanager_secret:
 :template_awsqs_kubernetes_resource:
+:template_cliquery:
 :template_copyzips:
+:template_custom_cliquery:
 :template_custom_copyzips:
 :template_custom_rafaycluster:
 :template_custom_rafayorg:
+:template_iam:
 :template_kubernetes:
 :template_lambda:
 :template_rafaycluster:
 :template_rafayorg:
+:template_secretsmanager:
