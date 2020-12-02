@@ -950,33 +950,22 @@ AWS Cloud.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>A highly available architecture that spans two Availability Zones.*</p>
+<p>A highly available architecture that spans three Availability Zones.*</p>
 </li>
 <li>
-<p>A VPC configured with public and private subnets, according to AWS
-best practices, to provide you with your own virtual network on AWS.*</p>
+<p>A VPC configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*</p>
 </li>
 <li>
-<p>In the public subnets:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Managed network address translation (NAT) gateways to allow outbound
-internet access for resources in the private subnets.*</p>
+<p>In the public subnets, managed NAT gateways to allow outbound internet access for resources in the private subnets.*</p>
 </li>
 <li>
-<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure
-Shell (SSH) access to EC2 instances in public and private subnets.*</p>
+<p>In one public subnet, a Linux bastion host in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in private subnets. The bastion host is also configured with the Kubernetes <code>kubectl</code> command line interface (CLI) for managing the Kubernetes cluster.</p>
 </li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="ulist">
-<ul>
 <li>
-<p>&lt;describe any additional components&gt;.</p>
+<p>An Amazon EKS cluster, which creates the Kubernetes control plane.</p>
+</li>
+<li>
+<p>In the private subnets, a group of Kubernetes nodes, running the Rafay Operator software with tie ins to the Rafay Controller SAAS.</p>
 </li>
 </ul>
 </div>
