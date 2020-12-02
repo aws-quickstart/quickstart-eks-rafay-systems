@@ -64,3 +64,17 @@ https://docs.rafay.co/security/overview/[Security Overview] will explain what yo
 *{partner-product-short-name} documentation*
 
 * https://docs.rafay.co/[Managed Kubernetes Platform Documentation]
+
+*AWS resources*
+
+* https://aws.amazon.com/getting-started/[[.underline]#Getting Started Resource Center#]
+* https://docs.aws.amazon.com/general/latest/gr/[[.underline]#AWS General Reference#]
+* https://docs.aws.amazon.com/general/latest/gr/glos-chap.html[[.underline]#AWS Glossary#]
+
+*AWS services*
+
+* https://docs.aws.amazon.com/cloudformation/[[.underline]#AWS CloudFormation#]
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html[[.underline]#Amazon EBS#]
+* https://docs.aws.amazon.com/ec2/[[.underline]#Amazon EC2#]
+* https://docs.aws.amazon.com/iam/[[.underline]#IAM#]
+* https://docs.aws.amazon.com/vpc/[[.underline]#Amazon VPC#]

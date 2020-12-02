@@ -3,7 +3,6 @@ Description: "Deploys the Rafay System helm chart into an existing kubernetes cl
 Metadata:
   QuickStartDocumentation:
     EntrypointName: "Launch into an existing EKS cluster"
-    Order: 1
     OptionalParameters:
       - BootstrapBucket
       - BootstrapKey
