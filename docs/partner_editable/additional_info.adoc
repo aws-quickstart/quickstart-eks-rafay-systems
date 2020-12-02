@@ -17,7 +17,7 @@ image::../images/testing-deployment.png[width=100%,height=100%]
 == Best practices for using {partner-product-short-name} on AWS
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
 
-_Add any best practices for using the software._
+For best practices, recipes and general documentation, please visit https://docs.rafay.co/[Rafay's Documentation].
 
 == Security
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
