@@ -3,12 +3,11 @@
 
 == Test the deployment
 // If steps are required to test the deployment, add them here. If not, remove the heading
-1.	New Rafay customers check the email for the username/password and link to Rafay console. Login to Rafay console.
-2.	Existing customers can skip the above step and directly login to Rafay console.
-3.	Navigate to Infrastructure > Clusters, you will see the details of newly imported cluster as shown below.
+1.	Log in to the Rafay console. New Rafay customers will receive an email with a username, password, and link to the Rafay console.
+2.	Navigate to `Infrastructure` and then `Clusters` to find details about the newly imported cluster, as shown in the following figure.
 
 [#testing1]
-.Imported Cluster Information {partner-product-short-name} on AWS
+.Imported cluster information {partner-product-short-name} on AWS
 image::../images/testing-deployment.png[width=100%,height=100%]
 
 //== Post deployment steps
@@ -17,44 +16,37 @@ image::../images/testing-deployment.png[width=100%,height=100%]
 == Best practices for using {partner-product-short-name} on AWS
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
 
-For best practices, recipes and general documentation, please visit https://docs.rafay.co/[Rafay's Documentation].
+For best practices and general documentation, see https://docs.rafay.co/[Rafay's documentation^].
 
 == Security
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
 
-Here are several important considerations related to the Rafay Systems Managed Kubernetes Platform.
+The following are important considerations related to the Rafay Systems MKP:
 
-* Roles-Based Access Control & Amazon IAM
+* Roles-based access control and Amazon IAM
 
-* With Rafay, you can fully automate the provisioning and ongoing lifecycle management of Amazon EKS clusters in all supported AWS regions.
+* You can automate the provisioning and lifecycle management of Amazon EKS clusters in all supported AWS Regions.
 
-* With auto provisioning, you can have a cluster operational in just a few clicks. In order to do this, you need to provide credentials that allow programmatic access to Amazon AWS.
+* With auto provisioning, you can deploy a cluster in moments. In order to do this, you must provide credentials that allow programmatic access to Amazon AWS.
 
-* Two types of credentials are supported: IAM Role & IAM User. For more information on how to create and configure these credentials for use with the MKP, please see the MKP Documentation: https://docs.rafay.co/clusters/provision/eks/credentials/
+* Two types of credentials are supported: IAM Role and IAM User. For more information about how to create and configure MKP credentials, see the https://docs.rafay.co/clusters/provision/eks/credentials/[MKP documentation^].
 
-=== Email Allowlisting
+=== Email allow listing
 
-A 3rd Party service is used for emails sent by the Controller (i.e. for first time user activation, password resets, notifications etc.). To guarantee delivery of emails from the SaaS Controller to users in the Tenant/Organization, we strongly recommend that customers "allowlist" the IP address used for sending emails in their inbound email security systems.
+A third-party service is used for emails sent by the controller (for example, for first-time user activation, password resets, and notifications). To help guarantee delivery of emails from the SaaS controller to users in your organization, we recommend using an IP allow list for for inbound traffic. The dedicated IP address used for sending emails from the Rafay Controller is `149.72.39.92`.
 
-The dedicated IP address currently used for sending emails from the Rafay Controller is "149.72.39.92".
+=== Network firewall rules
 
-=== Network Firewall Rules
+The Rafay Controller is designed for customers to deploy and manage clusters in both public and on-premises environments. To onboard an on-premise or cloud-based cluster onto for ongoing operations and lifecycle management, ensure the following:
 
-The Rafay Controller has been specially designed so that customers can deploy and manage their clusters in both Internet (public IP) and on-premises (private IP) type environments.
+* A Kubernetes operator is installed on each managed cluster. This establishes and maintains an outbound TLS-based control channel for the Rafay controller, which is hosted on AWS for SaaS.
+* No inbound ports are opened on the customer's external firewall for Rafay control-plane traffic.
 
-To onboard an on-premise or cloud-based cluster onto the Rafay Controller for ongoing operations and lifecycle management:
+The Rafay Kubernetes operator uses only `TCP Port 443, Outbound` to communicate with the Rafay controller.
 
-* A “Kubernetes Operator” is installed on each managed cluster.
-* This establishes and maintains a "long running" outbound TLS based control channel to the Rafay Controller (hosted in Amazon Web Services (AWS) for SaaS).
-* No inbound ports need to be opened on the customer's external firewall for Rafay control plane traffic.
+=== Controller details
 
-The Rafay Kubernetes Operator uses only "TCP Port 443, Outbound" to communicate with the Rafay Controller.
-
-=== Controller Details
-
-Customers that wish to lock down communication further can optionally add the IP addresses and the FQDN's of the SaaS Rafay Controller in their firewalls to ensure that outbound connectivity is only allowed to these IPs. The SaaS Rafay Controller is currently deployed in a highly available manner across three availability zones (AZ) on AWS.
-
-https://docs.rafay.co/security/overview/[Security Overview] will explain what you need to enter into your allow lists.
+Customers who want greater security can add the IP addresses and FQDNs of the SaaS Rafay controller to their firewalls. This helps to ensure that outbound connectivity is only allowed through these IPs. The SaaS Rafay controller is highly available across three Availability Zones (AZ) on AWS. For more information, see https://docs.rafay.co/security/overview/[Rafay's security overview^].
 
 
 
@@ -63,18 +55,18 @@ https://docs.rafay.co/security/overview/[Security Overview] will explain what yo
 
 *{partner-product-short-name} documentation*
 
-* https://docs.rafay.co/[Managed Kubernetes Platform Documentation]
+* https://docs.rafay.co/[Managed Kubernetes Platform Documentation^]
 
 *AWS resources*
 
-* https://aws.amazon.com/getting-started/[[.underline]#Getting Started Resource Center#]
-* https://docs.aws.amazon.com/general/latest/gr/[[.underline]#AWS General Reference#]
-* https://docs.aws.amazon.com/general/latest/gr/glos-chap.html[[.underline]#AWS Glossary#]
+* https://aws.amazon.com/getting-started/[Getting Started Resource Center^]
+* https://docs.aws.amazon.com/general/latest/gr/[AWS General Reference^]
+* https://docs.aws.amazon.com/general/latest/gr/glos-chap.html[AWS Glossary^]
 
 *AWS services*
 
-* https://docs.aws.amazon.com/cloudformation/[[.underline]#AWS CloudFormation#]
-* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html[[.underline]#Amazon EBS#]
-* https://docs.aws.amazon.com/ec2/[[.underline]#Amazon EC2#]
-* https://docs.aws.amazon.com/iam/[[.underline]#IAM#]
-* https://docs.aws.amazon.com/vpc/[[.underline]#Amazon VPC#]
+* https://docs.aws.amazon.com/cloudformation/[AWS CloudFormation^]
+* https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html[Amazon EBS^]
+* https://docs.aws.amazon.com/ec2/[Amazon EC2^]
+* https://docs.aws.amazon.com/iam/[IAM^]
+* https://docs.aws.amazon.com/vpc/[Amazon VPC^]
