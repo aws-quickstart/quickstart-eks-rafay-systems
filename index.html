@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.12">
 <title></title>
 <style>
 
@@ -815,9 +815,9 @@ p.footer-text a{color:#d7d8d8}
 <li><a href="#_best_practices_for_using_rafay_systems_managed_kubernetes_platform_mkp_on_aws">Best practices for using Rafay Systems Managed Kubernetes Platform (MKP) on AWS</a></li>
 <li><a href="#_security">Security</a>
 <ul class="sectlevel2">
-<li><a href="#_email_allowlisting">Email Allowlisting</a></li>
-<li><a href="#_network_firewall_rules">Network Firewall Rules</a></li>
-<li><a href="#_controller_details">Controller Details</a></li>
+<li><a href="#_email_allow_listing">Email allow listing</a></li>
+<li><a href="#_network_firewall_rules">Network firewall rules</a></li>
+<li><a href="#_controller_details">Controller details</a></li>
 </ul>
 </li>
 <li><a href="#_other_useful_information">Other useful information</a></li>
@@ -847,9 +847,9 @@ p.footer-text a{color:#d7d8d8}
 </div>
 </div>
 <div class="paragraph text-center">
-<p><strong>December 2020</strong><br>
+<p><strong>January 2021</strong><br>
 <em>Kutumba Manne, Rafay</em><br>
-<em>Troy Ameigh &amp; Jay McConnell Partner Solutions Architect - AWS Quick Start Team</em></p>
+<em>Troy Ameigh and Jay McConnell, AWS Quick Start team</em></p>
 </div>
 <div class="admonitionblock tip text-left">
 <table>
@@ -858,7 +858,7 @@ p.footer-text a{color:#d7d8d8}
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Visit the <a href="https://github.com/aws-quickstart/quickstart-eks-rafay-systems" target="_blank" rel="noopener">GitHub repository</a> for source files and to post feedback,
+Visit our <a href="https://github.com/aws-quickstart/quickstart-eks-rafay-systems" target="_blank" rel="noopener">GitHub repository</a> for source files and to post feedback,
 report bugs, or submit feature ideas for this Quick Start.
 </td>
 </tr>
@@ -876,33 +876,30 @@ report bugs, or submit feature ideas for this Quick Start.
 <p>This guide provides instructions for deploying the Rafay Systems Managed Kubernetes Platform (MKP) Quick Start reference architecture on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start is for IT/Cloud/Developer Operations professionals who are looking to rapidly deploy a fully functional Kubernetes infrastructure to assist in the management of containerized applications located in AWS, data centers, and at the network’s edge. With the MKP, organizations are able to leverage critical enterprise-grade requirements such as global visibility, security, governance and ease of overall management of Kubernetes clusters – all from a single management console.</p>
+<p>This Quick Start is for IT, cloud, and developer professionals who want to deploy a fully functional Kubernetes infrastructure to assist in the management of containerized applications located in AWS, data centers, and at network edges. With MKP, organizations can leverage critical enterprise-grade requirements such as global visibility, security, and management of Kubernetes clusters from a single management console.</p>
 </div>
 <div class="sect2">
 <h3 id="_mkp_on_aws">MKP on AWS</h3>
 <div class="paragraph">
-<p>Rafay allows users to provision Kubernetes clusters on both "public cloud" and "on-premises" environments. Rafay provides streamlined provisioning approaches that allow users to bring up a "managed" Kubernetes cluster:</p>
+<p>Rafay lets users to provision Kubernetes clusters on both "public cloud" and "on-premises" environments. Rafay provides streamlined provisioning approaches that allow users to bring up a "managed" Kubernetes cluster:</p>
 </div>
 <div class="paragraph">
-<p><strong>Automatically Provisioned</strong> clusters are primarily designed for public cloud environments where core infrastructure (compute, storage, networking) can be programmatically created and configured by Rafay. This is designed to be a completely automated, zero touch experience for the user. This approach is currently supported for Amazon AWS EC2 and Amazon EKS public cloud environments. For High Availability (HA) clusters, Rafay automatically provisions the "master nodes" on different Availability Zones (AZ).</p>
+<p><strong>Automatically provisioned</strong> clusters are primarily designed for public cloud environments where core infrastructure (compute, storage, networking) can be programmatically created and configured by Rafay. It&#8217;s designed to be a completely automated experience for users. This approach is currently supported for Amazon AWS EC2 and Amazon EKS public cloud environments. For High Availability (HA) clusters, Rafay automatically provisions master nodes in different Availability Zones (AZ).</p>
 </div>
 <div class="paragraph">
-<p><strong>Manually Provisioned</strong> clusters are agnostic to the type and provider of the underlying infrastructure and mostly used for clusters running on bare metal and virtual machines (VMs). With this approach, customers are responsible for the underlying hardware and the Operating System (OS) for the nodes.</p>
+<p><strong>Manually provisioned</strong> clusters are agnostic to the type and provider of the underlying infrastructure and are mostly used for clusters that run bare metal and virtual machines (VMs). With this approach, customers are responsible for the underlying hardware and operating system of the nodes.</p>
 </div>
 <div class="paragraph">
-<p>Existing clusters (within a datacenter, for example) can also be imported to the MKP.</p>
+<p>Existing clusters (for example, within a datacenter) can be imported to the MKP. When all clusters are provisioned or imported, the MKP provides a single console that provides visibility and management of applications and clusters across the entire infrastructure. The benefits of this include the following:</p>
 </div>
 <div class="paragraph">
-<p>Once all clusters have been provisioned and/or imported, the MKP provides a single console that provides visibility and management of applications and clusters across the entire infrastructure. The benefits of this include:</p>
+<p><strong>Single pane-of-glass management across AWS Regions and on premises</strong>: Use a single console to deploy, view, and manage clusters and workloads across all clusters.</p>
 </div>
 <div class="paragraph">
-<p><strong>Single Pane of Glass Management Across AWS Regions &amp; On-Prem</strong>: Leverage a single, consistent console to easily deploy, view and manage clusters and workloads across all your clusters, deployed on-premises and across all regions on AWS</p>
+<p><strong>Accelerate migration to AWS:</strong> With Rafay, Amazon EKS clusters can be running in minutes (including spot instances), and applications can be deployed in even less time.</p>
 </div>
 <div class="paragraph">
-<p><strong>Accelerate Migration To AWS:</strong> With Rafay, Amazon EKS clusters are up and running in minutes (including spot instances), and applications can be deployed in even less time.</p>
-</div>
-<div class="paragraph">
-<p><strong>Apply Enterprise-Grade K8s Security In AWS</strong>: Rafay’s Zero-Trust Architecture for Kubernetes enables enterprises to cloak their Kubernetes API endpoints on AWS without impacting CI/CD and developer workflows.</p>
+<p><strong>Apply enterprise-grade K8s security on AWS</strong>: Rafay’s zero-trust architecture for Kubernetes lets enterprises  cloak their Kubernetes API endpoints on AWS without affecting CI/CD and developer workflows.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -923,7 +920,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This Quick Start requires a license for MKP. To use the Quick Start in your production environment, sign up for an account and license at <a href="https://console.rafay.dev/#/signup">Rafay Create Account</a>.</p>
+<p>This Quick Start requires a license for MKP. To use the Quick Start in your production environment, sign up for an account and license through <a href="https://console.rafay.dev/#/signup" target="_blank" rel="noopener">Rafay Create Account</a>.</p>
 </div>
 </div>
 </div>
@@ -956,21 +953,28 @@ AWS Cloud.</p>
 <p>A VPC configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*</p>
 </li>
 <li>
-<p>In the public subnets, managed NAT gateways to allow outbound internet access for resources in the private subnets.*</p>
+<p>In the public subnets:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Managed NAT gateways to allow outbound internet access for resources in the private subnets.*</p>
 </li>
 <li>
-<p>In one public subnet, a Linux bastion host in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in private subnets. The bastion host is also configured with the Kubernetes <code>kubectl</code> command line interface (CLI) for managing the Kubernetes cluster.</p>
+<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in private subnets. The bastion host is also configured with the Kubernetes <code>kubectl</code> command line interface (CLI) for managing the Kubernetes cluster.</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>An Amazon EKS cluster, which creates the Kubernetes control plane.</p>
 </li>
 <li>
-<p>In the private subnets, a group of Kubernetes nodes, running the Rafay Operator software with tie ins to the Rafay Controller SAAS.</p>
+<p>In the private subnets, a group of Kubernetes nodes that run the Rafay operator software with ties to the Rafay controller SAAS.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><span class="small">*The template that deploys the Quick Start into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration.</span></p>
+<p><span class="small">*The template that deploys this Quick Start into an existing VPC skips the components marked by asterisks and prompts you for your existing VPC configuration.</span></p>
 </div>
 </div>
 </div>
@@ -982,14 +986,14 @@ AWS Cloud.</p>
 <div class="paragraph">
 <p>This deployment guide requires a moderate level of familiarity with
 AWS services. If you’re new to AWS, see the <a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started Resource Center</a>
-and <a href="https://aws.amazon.com/training/">AWS Training and Certification</a>. These sites provide materials for learning how to design,
+and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">AWS Training and Certification</a>. These sites provide materials for learning how to design,
 deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start assumes familiarity with container and Kubernetes technology, constructs and configurations.</p>
+<p>This Quick Start assumes familiarity with container and Kubernetes technologies, constructs, and configurations.</p>
 </div>
 <div class="paragraph">
-<p>This deployment guide also requires a moderate level of familiarity with AWS services. If you’re new to AWS, visit the <a href="https://aws.amazon.com/getting-started/" class="bare">https://aws.amazon.com/getting-started/</a><span class="[.underline">Getting Started Resource Center</span>] and the <a href="https://aws.amazon.com/training/" class="bare">https://aws.amazon.com/training/</a><span class="[.underline">AWS Training and Certification website</span>]. These sites provide materials for learning how to design, deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
+<p>This deployment guide also requires a moderate level of familiarity with AWS services. If you’re new to AWS, see <a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started with AWS</a> and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">AWS Training and Certification</a>. These sites provide materials for learning how to design, deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1004,7 +1008,7 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 <div class="sect2">
 <h3 id="_amazon_eks_cluster">Amazon EKS cluster</h3>
 <div class="paragraph">
-<p>If you deploy your cluster into an existing Amazon EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/">Amazon EKS on the AWS Cloud</a> Quick Start, you must configure your cluster to allow this Quick Start to manage it. For more information, see the <a href="#_deployment_steps">Deployment steps</a> section.</p>
+<p>If you deploy your cluster into an existing Amazon EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> Quick Start, you must configure your cluster to allow this Quick Start to manage it. For more information, see the <a href="#_deployment_steps">Deployment steps</a> section.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1030,7 +1034,7 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 <p><strong>Deploy Rafay Systems Managed Kubernetes Platform (MKP) into a new EKS cluster of an existing VPC</strong>. This option builds a new Amazon EKS cluster, node group, and other infrastructure components into an existing VPC. It then deploys Rafay Systems Managed Kubernetes Platform (MKP) into this new EKS cluster.</p>
 </li>
 <li>
-<p><strong>Deploy Rafay Systems Managed Kubernetes Platform (MKP) into an existing EKS cluster</strong>. This option provisions Rafay Systems Managed Kubernetes Platform (MKP) in your existing AWS infrastructure. Note that when deploying into an EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/">Amazon EKS on the AWS Cloud</a> Quick Start, you must prepare the cluster as described in the <a href="#_deployment_steps">Deployment steps</a> section.</p>
+<p><strong>Deploy Rafay Systems Managed Kubernetes Platform (MKP) into an existing EKS cluster</strong>. This option provisions Rafay Systems Managed Kubernetes Platform (MKP) in your existing AWS infrastructure. Note that when deploying into an EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> Quick Start, you must prepare the cluster as described in the <a href="#_deployment_steps">Deployment steps</a> section.</p>
 </li>
 </ul>
 </div>
@@ -1049,7 +1053,7 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-This step is only required if you launch this Quick Start into an existing Amazon EKS cluster that was not created using the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/">Amazon EKS on the AWS Cloud</a> deployment. If you want to create a new EKS cluster with your deployment, skip to step 3.
+This step is only required if you launch this Quick Start into an existing Amazon EKS cluster that was not created using the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> deployment. If you want to create a new EKS cluster with your deployment, skip to step 3.
 </td>
 </tr>
 </table>
@@ -1057,10 +1061,10 @@ This step is only required if you launch this Quick Start into an existing Amazo
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Sign in to your AWS account at <a href="https://aws.amazon.com" class="bare">https://aws.amazon.com</a> with an IAM user role that has the necessary permissions. For details, see <a href="#_planning_the_deployment">Planning the deployment</a>, earlier in this guide.</p>
+<p>Sign in to your AWS account at <a href="https://aws.amazon.com" target="_blank" rel="noopener">https://aws.amazon.com</a> with an IAM user role that has the necessary permissions. For details, see <a href="#_planning_the_deployment">Planning the deployment</a>, earlier in this guide.</p>
 </li>
 <li>
-<p>Launch the <a href="https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/template?stackName=Amazon-EKS&amp;templateURL=https://aws-quickstart.s3.us-east-1.amazonaws.com/quickstart-amazon-eks/templates/amazon-eks-entrypoint-existing-cluster.template.yaml">cluster preparation template</a>.</p>
+<p>Launch the <a href="https://us-east-2.console.aws.amazon.com/cloudformation/home?region=us-east-2#/stacks/create/template?stackName=Amazon-EKS&amp;templateURL=https://aws-quickstart.s3.us-east-1.amazonaws.com/quickstart-amazon-eks/templates/amazon-eks-entrypoint-existing-cluster.template.yaml" target="_blank" rel="noopener">cluster preparation template</a>.</p>
 </li>
 <li>
 <p>The template launches in the US East (Ohio) Region by default. To change the Region, choose another Region from the list in the upper-right corner of the navigation bar.</p>
@@ -1146,7 +1150,7 @@ You are responsible for the cost of the AWS services used while running this Qui
 </tbody>
 </table>
 <div class="paragraph">
-<p>New clusters take about 1.5 hours to deploy. Existing clusters take about 45-60 minutes to deploy.</p>
+<p>New clusters take about 1.5 hours to deploy. Existing clusters take about 45–60 minutes to deploy.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1204,13 +1208,10 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>New Rafay customers check the email for the username/password and link to Rafay console. Login to Rafay console.</p>
+<p>Log in to the Rafay console. New Rafay customers will receive an email with a username, password, and link to the Rafay console.</p>
 </li>
 <li>
-<p>Existing customers can skip the above step and directly login to Rafay console.</p>
-</li>
-<li>
-<p>Navigate to Infrastructure &gt; Clusters, you will see the details of newly imported cluster as shown below.</p>
+<p>Navigate to <code>Infrastructure</code> and then <code>Clusters</code> to find details about the newly imported cluster, as shown in the following figure.</p>
 </li>
 </ol>
 </div>
@@ -1218,7 +1219,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="content">
 <img src="images/testing-deployment.png" alt="testing deployment" width="100%" height="100%">
 </div>
-<div class="title">Figure 3. Imported Cluster Information Rafay Systems Managed Kubernetes Platform (MKP) on AWS</div>
+<div class="title">Figure 3. Imported cluster information Rafay Systems Managed Kubernetes Platform (MKP) on AWS</div>
 </div>
 </div>
 </div>
@@ -1226,7 +1227,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <h2 id="_best_practices_for_using_rafay_systems_managed_kubernetes_platform_mkp_on_aws">Best practices for using Rafay Systems Managed Kubernetes Platform (MKP) on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For best practices, recipes and general documentation, please visit <a href="https://docs.rafay.co/">Rafay&#8217;s Documentation</a>.</p>
+<p>For best practices and general documentation, see <a href="https://docs.rafay.co/" target="_blank" rel="noopener">Rafay&#8217;s documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -1234,65 +1235,53 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <h2 id="_security">Security</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Here are several important considerations related to the Rafay Systems Managed Kubernetes Platform.</p>
+<p>The following are important considerations related to the Rafay Systems MKP:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Roles-Based Access Control &amp; Amazon IAM</p>
+<p>Roles-based access control and Amazon IAM</p>
 </li>
 <li>
-<p>With Rafay, you can fully automate the provisioning and ongoing lifecycle management of Amazon EKS clusters in all supported AWS regions.</p>
+<p>You can automate the provisioning and lifecycle management of Amazon EKS clusters in all supported AWS Regions.</p>
 </li>
 <li>
-<p>With auto provisioning, you can have a cluster operational in just a few clicks. In order to do this, you need to provide credentials that allow programmatic access to Amazon AWS.</p>
+<p>With auto provisioning, you can deploy a cluster in moments. In order to do this, you must provide credentials that allow programmatic access to Amazon AWS.</p>
 </li>
 <li>
-<p>Two types of credentials are supported: IAM Role &amp; IAM User. For more information on how to create and configure these credentials for use with the MKP, please see the MKP Documentation: <a href="https://docs.rafay.co/clusters/provision/eks/credentials/" class="bare">https://docs.rafay.co/clusters/provision/eks/credentials/</a></p>
+<p>Two types of credentials are supported: IAM Role and IAM User. For more information about how to create and configure MKP credentials, see the <a href="https://docs.rafay.co/clusters/provision/eks/credentials/" target="_blank" rel="noopener">MKP documentation</a>.</p>
 </li>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_email_allowlisting">Email Allowlisting</h3>
+<h3 id="_email_allow_listing">Email allow listing</h3>
 <div class="paragraph">
-<p>A 3rd Party service is used for emails sent by the Controller (i.e. for first time user activation, password resets, notifications etc.). To guarantee delivery of emails from the SaaS Controller to users in the Tenant/Organization, we strongly recommend that customers "allowlist" the IP address used for sending emails in their inbound email security systems.</p>
-</div>
-<div class="paragraph">
-<p>The dedicated IP address currently used for sending emails from the Rafay Controller is "149.72.39.92".</p>
+<p>A third-party service is used for emails sent by the controller (for example, for first-time user activation, password resets, and notifications). To help guarantee delivery of emails from the SaaS controller to users in your organization, we recommend using an IP allow list for for inbound traffic. The dedicated IP address used for sending emails from the Rafay Controller is <code>149.72.39.92</code>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_network_firewall_rules">Network Firewall Rules</h3>
+<h3 id="_network_firewall_rules">Network firewall rules</h3>
 <div class="paragraph">
-<p>The Rafay Controller has been specially designed so that customers can deploy and manage their clusters in both Internet (public IP) and on-premises (private IP) type environments.</p>
-</div>
-<div class="paragraph">
-<p>To onboard an on-premise or cloud-based cluster onto the Rafay Controller for ongoing operations and lifecycle management:</p>
+<p>The Rafay Controller is designed for customers to deploy and manage clusters in both public and on-premises environments. To onboard an on-premise or cloud-based cluster onto for ongoing operations and lifecycle management, ensure the following:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A “Kubernetes Operator” is installed on each managed cluster.</p>
+<p>A Kubernetes operator is installed on each managed cluster. This establishes and maintains an outbound TLS-based control channel for the Rafay controller, which is hosted on AWS for SaaS.</p>
 </li>
 <li>
-<p>This establishes and maintains a "long running" outbound TLS based control channel to the Rafay Controller (hosted in Amazon Web Services (AWS) for SaaS).</p>
-</li>
-<li>
-<p>No inbound ports need to be opened on the customer&#8217;s external firewall for Rafay control plane traffic.</p>
+<p>No inbound ports are opened on the customer&#8217;s external firewall for Rafay control-plane traffic.</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>The Rafay Kubernetes Operator uses only "TCP Port 443, Outbound" to communicate with the Rafay Controller.</p>
+<p>The Rafay Kubernetes operator uses only <code>TCP Port 443, Outbound</code> to communicate with the Rafay controller.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_controller_details">Controller Details</h3>
+<h3 id="_controller_details">Controller details</h3>
 <div class="paragraph">
-<p>Customers that wish to lock down communication further can optionally add the IP addresses and the FQDN&#8217;s of the SaaS Rafay Controller in their firewalls to ensure that outbound connectivity is only allowed to these IPs. The SaaS Rafay Controller is currently deployed in a highly available manner across three availability zones (AZ) on AWS.</p>
-</div>
-<div class="paragraph">
-<p><a href="https://docs.rafay.co/security/overview/">Security Overview</a> will explain what you need to enter into your allow lists.</p>
+<p>Customers who want greater security can add the IP addresses and FQDNs of the SaaS Rafay controller to their firewalls. This helps to ensure that outbound connectivity is only allowed through these IPs. The SaaS Rafay controller is highly available across three Availability Zones (AZ) on AWS. For more information, see <a href="https://docs.rafay.co/security/overview/" target="_blank" rel="noopener">Rafay&#8217;s security overview</a>.</p>
 </div>
 </div>
 </div>
@@ -1306,7 +1295,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.rafay.co/">Managed Kubernetes Platform Documentation</a></p>
+<p><a href="https://docs.rafay.co/" target="_blank" rel="noopener">Managed Kubernetes Platform Documentation</a></p>
 </li>
 </ul>
 </div>
@@ -1316,13 +1305,13 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://aws.amazon.com/getting-started/" class="bare">https://aws.amazon.com/getting-started/</a><span class="[.underline">Getting Started Resource Center</span>]</p>
+<p><a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started Resource Center</a></p>
 </li>
 <li>
-<p><a href="https://docs.aws.amazon.com/general/latest/gr/" class="bare">https://docs.aws.amazon.com/general/latest/gr/</a><span class="[.underline">AWS General Reference</span>]</p>
+<p><a href="https://docs.aws.amazon.com/general/latest/gr/" target="_blank" rel="noopener">AWS General Reference</a></p>
 </li>
 <li>
-<p><a href="https://docs.aws.amazon.com/general/latest/gr/glos-chap.html"><span class="underline">AWS Glossary</span></a></p>
+<p><a href="https://docs.aws.amazon.com/general/latest/gr/glos-chap.html" target="_blank" rel="noopener">AWS Glossary</a></p>
 </li>
 </ul>
 </div>
@@ -1332,19 +1321,19 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.aws.amazon.com/cloudformation/" class="bare">https://docs.aws.amazon.com/cloudformation/</a><span class="[.underline">AWS CloudFormation</span>]</p>
+<p><a href="https://docs.aws.amazon.com/cloudformation/" target="_blank" rel="noopener">AWS CloudFormation</a></p>
 </li>
 <li>
-<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html"><span class="underline">Amazon EBS</span></a></p>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html" target="_blank" rel="noopener">Amazon EBS</a></p>
 </li>
 <li>
-<p><a href="https://docs.aws.amazon.com/ec2/" class="bare">https://docs.aws.amazon.com/ec2/</a><span class="[.underline">Amazon EC2</span>]</p>
+<p><a href="https://docs.aws.amazon.com/ec2/" target="_blank" rel="noopener">Amazon EC2</a></p>
 </li>
 <li>
-<p><a href="https://docs.aws.amazon.com/iam/" class="bare">https://docs.aws.amazon.com/iam/</a><span class="[.underline">IAM</span>]</p>
+<p><a href="https://docs.aws.amazon.com/iam/" target="_blank" rel="noopener">IAM</a></p>
 </li>
 <li>
-<p><a href="https://docs.aws.amazon.com/vpc/" class="bare">https://docs.aws.amazon.com/vpc/</a><span class="[.underline">Amazon VPC</span>]</p>
+<p><a href="https://docs.aws.amazon.com/vpc/" target="_blank" rel="noopener">Amazon VPC</a></p>
 </li>
 </ul>
 </div>
@@ -1357,7 +1346,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (This setting is under <strong>Advanced</strong> in the AWS CloudFormation console, <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)</p>
+<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (This setting is under <strong>Advanced</strong> in the AWS CloudFormation console, <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in <code>%ProgramFiles%\Amazon\EC2ConfigService</code> and <code>C:\cfn\log</code>.)</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1366,19 +1355,16 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Delete the stack when you finish troubleshooting.
+When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for the stack. Delete the stack when you finish troubleshooting. For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting AWS CloudFormation</a>.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For additional information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting AWS CloudFormation</a> on the AWS website.</p>
-</div>
-<div class="paragraph">
 <p><strong>Q.</strong> I encountered a size limitation error when I deployed the AWS CloudFormation templates.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html">AWS CloudFormation quotas</a> on the AWS website.</p>
+<p><strong>A.</strong> We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS CloudFormation quotas</a>.</p>
 </div>
 </div>
 </div>
@@ -1593,15 +1579,15 @@ and share customizations with others.</p>
 <p>This document is provided for informational purposes only. It represents AWS’s current product offerings and practices as of the date of issue of this document, which are subject to change without notice. Customers are responsible for making their own independent assessment of the information in this document and any use of AWS’s products or services, each of which is provided “as is” without warranty of any kind, whether expressed or implied. This document does not create any warranties, representations, contractual commitments, conditions, or assurances from AWS, its affiliates, suppliers, or licensors. The responsibilities and liabilities of AWS to its customers are controlled by AWS agreements, and this document is not part of, nor does it modify, any agreement between AWS and its customers.</p>
 </div>
 <div class="paragraph">
-<p>The software included with this paper is licensed under the Apache License, version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at <a href="http://aws.amazon.com/apache2.0/" class="bare">http://aws.amazon.com/apache2.0/</a> or in the accompanying "license" file. This code is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied. See the License for specific language governing permissions and limitations.</p>
+<p>The software included with this paper is licensed under the Apache License, version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at <a href="http://aws.amazon.com/apache2.0/" target="_blank" rel="noopener">http://aws.amazon.com/apache2.0/</a> or in the accompanying "license" file. This code is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either expressed or implied. See the License for specific language governing permissions and limitations.</p>
 </div>
 </div>
 </div>
 </div>
 <p class="footer-text">
 <!-- We can use document attributes: -->
-<!-- Generated with Asciidoctor v2.0.10. -->
-<a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> | &copy; 2020, Amazon Web Services, Inc. or its affiliates and Rafay. All rights reserved.
+<!-- Generated with Asciidoctor v2.0.12. -->
+<a href="https://aws.amazon.com/privacy/">Privacy</a> | <a href="https://aws.amazon.com/terms/">Site terms</a> | &copy; 2021, Amazon Web Services, Inc. or its affiliates and Rafay. All rights reserved.
 </p>
 </body>
 </html>
