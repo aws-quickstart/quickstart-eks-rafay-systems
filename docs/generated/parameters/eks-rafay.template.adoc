@@ -9,7 +9,7 @@
 [width="100%",cols="16%,11%,73%",options="header",]
 |===
 |Parameter label (name) |Default value|Description|Rafay project
-(`Project`)|`defaultproject`|TODO|Bootstrap S3 bucket
+(`Project`)|`defaultproject`|Rafay System project name|Bootstrap S3 bucket
 (`BootstrapBucket`)|`**__Blank string__**`|(Optional) S3 bucket to place the the rafay bootstrap yaml file. If left blank the EKS Quick Start bucket will be used.|Bootstrap S3 key
 (`BootstrapKey`)|`**__Blank string__**`|(Optional) S3 key to place the the rafay bootstrap yaml file. If left blank the key will be rafay/<CLUSTER_NAME>/cluster-bootstrap.yaml.
 |===
