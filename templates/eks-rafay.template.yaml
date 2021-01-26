@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: "Deploys the Rafay System helm chart into an existing kubernetes cluster (qs-1r9rrs0h6)"
+Description: "Deploys the Rafay System helm chart into an existing Kubernetes cluster (qs-1r9rrs0h6)"
 Metadata:
   QuickStartDocumentation:
     EntrypointName: "Launch into an existing EKS cluster"
@@ -73,11 +73,11 @@ Parameters:
     Default: "defaultproject"
   BootstrapBucket:
     Type: String
-    Description: "(Optional) S3 bucket to place the the rafay bootstrap yaml file. If left blank the EKS Quick Start bucket will be used."
+    Description: "(Optional) S3 bucket to place the Rafay bootstrap .yaml file. If blank, the EKS Quick Start bucket is used."
     Default: ""
   BootstrapKey:
     Type: String
-    Description: "(Optional) S3 key to place the the rafay bootstrap yaml file. If left blank the key will be rafay/<CLUSTER_NAME>/cluster-bootstrap.yaml."
+    Description: "(Optional) S3 key to place the Rafay bootstrap .yaml file. If blank, the key is rafay/<CLUSTER_NAME>/cluster-bootstrap.yaml."
     Default: ""
   ApiKey:
     Type: String
@@ -108,13 +108,13 @@ Parameters:
     AllowedPattern: ^[0-9a-zA-Z]+([0-9a-zA-Z-]*[0-9a-zA-Z])*$
     ConstraintDescription: Quick Start bucket name can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).
     Default: aws-quickstart
-    Description: S3 bucket name for the Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).
+    Description: S3 bucket name for Quick Start assets. This string can include numbers, lowercase letters, uppercase letters, and hyphens (-). It cannot start or end with a hyphen (-).
     Type: String
   QSS3KeyPrefix:
     AllowedPattern: ^[0-9a-zA-Z-/.]*$
-    ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), periods (.) and forward slash (/).
+    ConstraintDescription: Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), periods (.) and forward slashes (/).
     Default: quickstart-amazon-eks/submodules/quickstart-eks-rafay/
-    Description: S3 key prefix for the Quick Start assets. Quick Start key prefix can include numbers, lowercase letters, uppercase letters, hyphens (-), periods (.) and forward slash (/).
+    Description: S3 key prefix for the Quick Start assets. This sting can include numbers, lowercase letters, uppercase letters, hyphens (-), periods (.) and forward slashes (/).
     Type: String
 Conditions:
   RegisterNewAccount: !Equals [!Ref ApiKey, ""]
