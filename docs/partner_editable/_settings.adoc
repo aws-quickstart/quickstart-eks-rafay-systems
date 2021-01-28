@@ -3,7 +3,7 @@
 :quickstart-project-name: quickstart-eks-rafay-systems
 :partner-product-name: Rafay Systems
 // For the following attribute, if you have no short name, enter the same name as partner-product-name.
-:partner-product-short-name: Rafay Systems Managed Kubernetes Platform (MKP)
+:partner-product-short-name: Rafay Systems MKP
 :custom_title:
 // If there's no partner, comment partner-company-name and partner-contributors.
 :partner-company-name: Rafay

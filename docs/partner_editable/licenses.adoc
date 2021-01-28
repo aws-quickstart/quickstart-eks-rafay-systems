@@ -1,6 +1,6 @@
 // Include details about the license and how they can sign up. If no license is required, clarify that. 
 
-This Quick Start requires a license for MKP. To use the Quick Start in your production environment, sign up for an account and license through https://console.rafay.dev/#/signup[Rafay Create Account^].
+This Quick Start requires a license for MKP. To use this Quick Start in a production environment, https://console.rafay.dev/#/signup[sign up for a Rafay account and license^].
 
 
 
