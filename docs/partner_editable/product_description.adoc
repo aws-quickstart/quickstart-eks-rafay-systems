@@ -10,7 +10,7 @@ Rafay lets users provision Kubernetes clusters on both public clouds and on-prem
 
 *Manually provisioned* clusters are agnostic to the type and provider of the underlying infrastructure and mostly used for clusters running on bare metal and virtual machines (VMs). With this approach, customers are responsible for the underlying hardware and the Operating System (OS) for the nodes.
 
-Existing clusters (within a datacenter, for example) can also be imported to the MKP.
+Existing clusters (within a data center, for example) can also be imported to the MKP.
 
 Once all clusters have been provisioned and/or imported, the MKP provides a single console that provides visibility and management of applications and clusters across the entire infrastructure. The benefits of this include:
 

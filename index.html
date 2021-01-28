@@ -812,7 +812,7 @@ p.footer-text a{color:#d7d8d8}
 </ul>
 </li>
 <li><a href="#_test_the_deployment">Test the deployment</a></li>
-<li><a href="#_best_practices_for_using_rafay_systems_managed_kubernetes_platform_mkp_on_aws">Best practices for using Rafay Systems Managed Kubernetes Platform (MKP) on AWS</a></li>
+<li><a href="#_best_practices_for_using_rafay_systems_mkp_on_aws">Best practices for using Rafay Systems MKP on AWS</a></li>
 <li><a href="#_security">Security</a>
 <ul class="sectlevel2">
 <li><a href="#_email_allow_listing">Email allow listing</a></li>
@@ -873,33 +873,33 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide provides instructions for deploying the Rafay Systems Managed Kubernetes Platform (MKP) Quick Start reference architecture on the AWS Cloud.</p>
+<p>This guide provides instructions for deploying the Rafay Systems MKP Quick Start reference architecture on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start is for IT, cloud, and developer professionals who want to deploy a fully functional Kubernetes infrastructure to assist in the management of containerized applications located in AWS, data centers, and at network edges. With MKP, organizations can leverage critical enterprise-grade requirements such as global visibility, security, and management of Kubernetes clusters from a single management console.</p>
+<p>This Quick Start is for IT, cloud, and developer professionals who want to deploy a fully functional Kubernetes infrastructure, which assists in the management of containerized applications located in the AWS Cloud, in data centers, and at network edges. With MKP, organizations can leverage critical enterprise-grade requirements such as global visibility, security, and management of Kubernetes clusters from a single console.</p>
 </div>
 <div class="sect2">
 <h3 id="_mkp_on_aws">MKP on AWS</h3>
 <div class="paragraph">
-<p>Rafay lets users to provision Kubernetes clusters on both "public cloud" and "on-premises" environments. Rafay provides streamlined provisioning approaches that allow users to bring up a "managed" Kubernetes cluster:</p>
+<p>Rafay users can provision Kubernetes clusters in both public-cloud and on-premises environments. Rafay provides a streamlined provisioning approach that allows users to manage Kubernetes clusters.</p>
 </div>
 <div class="paragraph">
-<p><strong>Automatically provisioned</strong> clusters are primarily designed for public cloud environments where core infrastructure (compute, storage, networking) can be programmatically created and configured by Rafay. It&#8217;s designed to be a completely automated experience for users. This approach is currently supported for Amazon AWS EC2 and Amazon EKS public cloud environments. For High Availability (HA) clusters, Rafay automatically provisions master nodes in different Availability Zones (AZ).</p>
+<p><strong>Automatically provisioned</strong> clusters are designed for cloud environments where Rafay can programmatically create and configure core infrastructure components (that is, compute, storage, and networking). It&#8217;s designed to be an automated experience for users. This approach is currently supported for Amazon Elastic Compute Cloud (Amazon EC2) and Amazon Elastic Kubernetes Service (Amazon EKS) environments. For high availability (HA) clusters, Rafay automatically provisions master nodes in different Availability Zones (AZs).</p>
 </div>
 <div class="paragraph">
 <p><strong>Manually provisioned</strong> clusters are agnostic to the type and provider of the underlying infrastructure and are mostly used for clusters that run bare metal and virtual machines (VMs). With this approach, customers are responsible for the underlying hardware and operating system of the nodes.</p>
 </div>
 <div class="paragraph">
-<p>Existing clusters (for example, within a datacenter) can be imported to the MKP. When all clusters are provisioned or imported, the MKP provides a single console that provides visibility and management of applications and clusters across the entire infrastructure. The benefits of this include the following:</p>
+<p>Existing clusters (for example, within a data center) can be imported to the MKP. When all clusters are provisioned or imported, the MKP provides a single console that provides visibility and management of applications and clusters across the entire infrastructure. The benefits of this include the following:</p>
 </div>
 <div class="paragraph">
 <p><strong>Single pane-of-glass management across AWS Regions and on premises</strong>: Use a single console to deploy, view, and manage clusters and workloads across all clusters.</p>
 </div>
 <div class="paragraph">
-<p><strong>Accelerate migration to AWS:</strong> With Rafay, Amazon EKS clusters can be running in minutes (including spot instances), and applications can be deployed in even less time.</p>
+<p><strong>Accelerate migration to AWS:</strong> With Rafay, Amazon EKS clusters can be running in minutes (including Spot Instances), and applications can be deployed in even less time.</p>
 </div>
 <div class="paragraph">
-<p><strong>Apply enterprise-grade K8s security on AWS</strong>: Rafay’s zero-trust architecture for Kubernetes lets enterprises  cloak their Kubernetes API endpoints on AWS without affecting CI/CD and developer workflows.</p>
+<p><strong>Apply enterprise-grade K8 security on AWS</strong>: Rafay’s zero-trust architecture for Kubernetes lets enterprises  cloak their Kubernetes API endpoints on AWS without affecting CI/CD and developer workflows.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -920,7 +920,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This Quick Start requires a license for MKP. To use the Quick Start in your production environment, sign up for an account and license through <a href="https://console.rafay.dev/#/signup" target="_blank" rel="noopener">Rafay Create Account</a>.</p>
+<p>This Quick Start requires a license for MKP. To use this Quick Start in a production environment, <a href="https://console.rafay.dev/#/signup" target="_blank" rel="noopener">sign up for a Rafay account and license</a>.</p>
 </div>
 </div>
 </div>
@@ -941,8 +941,8 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 </div>
 <div class="paragraph">
 <p>Deploying this Quick Start for a new virtual private cloud (VPC) with
-default parameters builds the following Rafay Systems Managed Kubernetes Platform (MKP) environment in the
-AWS Cloud.</p>
+default parameters builds the following Rafay Systems MKP environment in the
+AWS Cloud. Note that this module is based on the <a href="https://prod-us-west-2.aem-author.marketing.aws.a2z.com/content/aws.amazon.com/staging/en_US/quickstart/architecture/amazon-eks.html" target="_blank" rel="noopener">Modular and Scalable Amazon EKS Architecture</a> Quick Start.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -950,26 +950,29 @@ AWS Cloud.</p>
 <p>A highly available architecture that spans three Availability Zones.*</p>
 </li>
 <li>
-<p>A VPC configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*</p>
+<p>A virtual private cloud (VPC) configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*</p>
 </li>
 <li>
 <p>In the public subnets:</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed NAT gateways to allow outbound internet access for resources in the private subnets.*</p>
+<p>Managed network address translation (NAT) gateways to allow outbound internet access for resources in the private subnets.*</p>
 </li>
 <li>
-<p>A Linux bastion host in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon Elastic Compute Cloud (Amazon EC2) instances in private subnets. The bastion host is also configured with the Kubernetes <code>kubectl</code> command line interface (CLI) for managing the Kubernetes cluster.</p>
+<p>Linux bastion hosts in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon EC2 instances in the private subnets. The bastion host is configured with the Kubernetes Kubectl command line interface for managing the Kubernetes cluster.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>An Amazon EKS cluster, which creates the Kubernetes control plane.</p>
+<p>In the private subnets:</p>
 </li>
 <li>
-<p>In the private subnets, a group of Kubernetes nodes that run the Rafay operator software with ties to the Rafay controller SAAS.</p>
+<p>A group of Kubernetes nodes in an Auto Scaling group that run the Rafay Operator software with tie-ins to the Rafay SaaS controller.</p>
+</li>
+<li>
+<p>Amazon EKS, which creates the Kubernetes control plane.</p>
 </li>
 </ul>
 </div>
@@ -991,9 +994,6 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
 <p>This Quick Start assumes familiarity with container and Kubernetes technologies, constructs, and configurations.</p>
-</div>
-<div class="paragraph">
-<p>This deployment guide also requires a moderate level of familiarity with AWS services. If you’re new to AWS, see <a href="https://aws.amazon.com/getting-started/" target="_blank" rel="noopener">Getting Started with AWS</a> and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">AWS Training and Certification</a>. These sites provide materials for learning how to design, deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1028,13 +1028,13 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Deploy Rafay Systems Managed Kubernetes Platform (MKP) into a new VPC (end-to-end deployment)</strong>. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, EKS cluster, a node group, and other infrastructure components. It then deploys Rafay Systems Managed Kubernetes Platform (MKP) into this new EKS cluster.</p>
+<p><strong>Deploy Rafay Systems MKP into a new VPC (end-to-end deployment)</strong>. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, EKS cluster, a node group, and other infrastructure components. It then deploys Rafay Systems MKP into this new EKS cluster.</p>
 </li>
 <li>
-<p><strong>Deploy Rafay Systems Managed Kubernetes Platform (MKP) into a new EKS cluster of an existing VPC</strong>. This option builds a new Amazon EKS cluster, node group, and other infrastructure components into an existing VPC. It then deploys Rafay Systems Managed Kubernetes Platform (MKP) into this new EKS cluster.</p>
+<p><strong>Deploy Rafay Systems MKP into a new EKS cluster of an existing VPC</strong>. This option builds a new Amazon EKS cluster, node group, and other infrastructure components into an existing VPC. It then deploys Rafay Systems MKP into this new EKS cluster.</p>
 </li>
 <li>
-<p><strong>Deploy Rafay Systems Managed Kubernetes Platform (MKP) into an existing EKS cluster</strong>. This option provisions Rafay Systems Managed Kubernetes Platform (MKP) in your existing AWS infrastructure. Note that when deploying into an EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> Quick Start, you must prepare the cluster as described in the <a href="#_deployment_steps">Deployment steps</a> section.</p>
+<p><strong>Deploy Rafay Systems MKP into an existing EKS cluster</strong>. This option provisions Rafay Systems MKP in your existing AWS infrastructure. Note that when deploying into an EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> Quick Start, you must prepare the cluster as described in the <a href="#_deployment_steps">Deployment steps</a> section.</p>
 </li>
 </ul>
 </div>
@@ -1159,7 +1159,7 @@ You are responsible for the cost of the AWS services used while running this Qui
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-If you deploy Rafay Systems Managed Kubernetes Platform (MKP) into an existing VPC, ensure that any private subnets have <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables to allow the Quick Start to download packages and software. Also, ensure that the domain name in the DHCP options is configured. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a>.
+If you deploy Rafay Systems MKP into an existing VPC, ensure that any private subnets have <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables to allow the Quick Start to download packages and software. Also, ensure that the domain name in the DHCP options is configured. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a>.
 </td>
 </tr>
 </table>
@@ -1167,7 +1167,7 @@ If you deploy Rafay Systems Managed Kubernetes Platform (MKP) into an existing V
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Rafay Systems Managed Kubernetes Platform (MKP) is built. The template launches in the us-east-1 Region by default.</p>
+<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Rafay Systems MKP is built. The template launches in the us-east-1 Region by default.</p>
 </li>
 <li>
 <p>On the <strong>Create stack</strong> page, keep the default setting for the template URL, and then choose <strong>Next</strong>.</p>
@@ -1186,7 +1186,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <p>Choose <strong>Create stack</strong> to deploy the stack.</p>
 </li>
 <li>
-<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Rafay Systems Managed Kubernetes Platform (MKP) deployment is ready.</p>
+<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Rafay Systems MKP deployment is ready.</p>
 </li>
 <li>
 <p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in the following figure.</p>
@@ -1197,7 +1197,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="content">
 <a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439"></a>
 </div>
-<div class="title">Figure 2. Rafay Systems Managed Kubernetes Platform (MKP) outputs after successful deployment</div>
+<div class="title">Figure 2. Rafay Systems MKP outputs after successful deployment</div>
 </div>
 </div>
 </div>
@@ -1208,10 +1208,10 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Log in to the Rafay console. New Rafay customers will receive an email with a username, password, and link to the Rafay console.</p>
+<p>Log in to the Rafay console. New Rafay customers will receive an email with a user name, password, and link to the Rafay console.</p>
 </li>
 <li>
-<p>Navigate to <code>Infrastructure</code> and then <code>Clusters</code> to find details about the newly imported cluster, as shown in the following figure.</p>
+<p>Navigate to <strong>Infrastructure</strong> and then <strong>Clusters</strong> for details about the newly imported cluster, as shown in the following figure.</p>
 </li>
 </ol>
 </div>
@@ -1219,15 +1219,15 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="content">
 <img src="images/testing-deployment.png" alt="testing deployment" width="100%" height="100%">
 </div>
-<div class="title">Figure 3. Imported cluster information Rafay Systems Managed Kubernetes Platform (MKP) on AWS</div>
+<div class="title">Figure 3. Imported cluster information Rafay Systems MKP on AWS</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_best_practices_for_using_rafay_systems_managed_kubernetes_platform_mkp_on_aws">Best practices for using Rafay Systems Managed Kubernetes Platform (MKP) on AWS</h2>
+<h2 id="_best_practices_for_using_rafay_systems_mkp_on_aws">Best practices for using Rafay Systems MKP on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For best practices and general documentation, see <a href="https://docs.rafay.co/" target="_blank" rel="noopener">Rafay&#8217;s documentation</a>.</p>
+<p>For more information, see <a href="https://docs.rafay.co/" target="_blank" rel="noopener">Rafay&#8217;s documentation</a>.</p>
 </div>
 </div>
 </div>
@@ -1256,13 +1256,13 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="sect2">
 <h3 id="_email_allow_listing">Email allow listing</h3>
 <div class="paragraph">
-<p>A third-party service is used for emails sent by the controller (for example, for first-time user activation, password resets, and notifications). To help guarantee delivery of emails from the SaaS controller to users in your organization, we recommend using an IP allow list for for inbound traffic. The dedicated IP address used for sending emails from the Rafay Controller is <code>149.72.39.92</code>.</p>
+<p>A third-party service is used for emails sent by the controller (for example, for first-time user activation, password resets, and notifications). To help ensure delivery of emails from the SaaS controller to users in your organization, we recommend using an IP allow list for inbound traffic. The dedicated IP address used for sending emails from the Rafay controller is <code>149.72.39.92</code>.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_network_firewall_rules">Network firewall rules</h3>
 <div class="paragraph">
-<p>The Rafay Controller is designed for customers to deploy and manage clusters in both public and on-premises environments. To onboard an on-premise or cloud-based cluster onto for ongoing operations and lifecycle management, ensure the following:</p>
+<p>The Rafay controller is designed for customers to deploy and manage clusters in both public and on-premises environments. To onboard an on-premises or cloud-based cluster  for ongoing operations and lifecycle management, ensure the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1281,7 +1281,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="sect2">
 <h3 id="_controller_details">Controller details</h3>
 <div class="paragraph">
-<p>Customers who want greater security can add the IP addresses and FQDNs of the SaaS Rafay controller to their firewalls. This helps to ensure that outbound connectivity is only allowed through these IPs. The SaaS Rafay controller is highly available across three Availability Zones (AZ) on AWS. For more information, see <a href="https://docs.rafay.co/security/overview/" target="_blank" rel="noopener">Rafay&#8217;s security overview</a>.</p>
+<p>Customers who want greater security can add the IP addresses and FQDNs of the SaaS Rafay controller to their firewalls. This helps to ensure that outbound connectivity is only allowed through these IPs. The Rafay SaaS controller is highly available across three Availability Zones (AZs) on AWS. For more information, see <a href="https://docs.rafay.co/security/overview/" target="_blank" rel="noopener">Rafay&#8217;s security overview</a>.</p>
 </div>
 </div>
 </div>
@@ -1290,12 +1290,12 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <h2 id="_other_useful_information">Other useful information</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Rafay Systems Managed Kubernetes Platform (MKP) documentation</strong></p>
+<p><strong>Rafay Systems MKP</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.rafay.co/" target="_blank" rel="noopener">Managed Kubernetes Platform Documentation</a></p>
+<p><a href="https://docs.rafay.co/" target="_blank" rel="noopener">MKP documentation</a></p>
 </li>
 </ul>
 </div>
@@ -1324,7 +1324,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <p><a href="https://docs.aws.amazon.com/cloudformation/" target="_blank" rel="noopener">AWS CloudFormation</a></p>
 </li>
 <li>
-<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html" target="_blank" rel="noopener">Amazon EBS</a></p>
+<p><a href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AmazonEBS.html" target="_blank" rel="noopener">Amazon Elastic Block Store (Amazon EBS)</a></p>
 </li>
 <li>
 <p><a href="https://docs.aws.amazon.com/ec2/" target="_blank" rel="noopener">Amazon EC2</a></p>
@@ -1346,7 +1346,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (This setting is under <strong>Advanced</strong> in the AWS CloudFormation console, <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in <code>%ProgramFiles%\Amazon\EC2ConfigService</code> and <code>C:\cfn\log</code>.)</p>
+<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (This setting is under <strong>Advanced</strong> in the AWS CloudFormation console, <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance remains running so you can troubleshoot the issue. (For Windows, look at the log files in <code>%ProgramFiles%\Amazon\EC2ConfigService</code> and <code>C:\cfn\log</code>.)</p>
 </div>
 <div class="admonitionblock warning">
 <table>
