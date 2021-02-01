@@ -791,7 +791,7 @@ p.footer-text a{color:#d7d8d8}
 <ul class="sectlevel1">
 <li><a href="#_overview">Overview</a>
 <ul class="sectlevel2">
-<li><a href="#_mkp_on_aws">MKP on AWS</a></li>
+<li><a href="#_mkp_for_aws">MKP for AWS</a></li>
 </ul>
 </li>
 <li><a href="#_software_licenses">Software licenses</a></li>
@@ -812,7 +812,7 @@ p.footer-text a{color:#d7d8d8}
 </ul>
 </li>
 <li><a href="#_test_the_deployment">Test the deployment</a></li>
-<li><a href="#_best_practices_for_using_rafay_systems_mkp_on_aws">Best practices for using Rafay Systems MKP on AWS</a></li>
+<li><a href="#_best_practices_for_using_rafay_mkp_on_aws">Best practices for using Rafay MKP on AWS</a></li>
 <li><a href="#_security">Security</a>
 <ul class="sectlevel2">
 <li><a href="#_email_allow_listing">Email allow listing</a></li>
@@ -839,7 +839,7 @@ p.footer-text a{color:#d7d8d8}
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<h2 id="_rafay_systems" class="discrete text-center">Rafay Systems</h2>
+<h2 id="_rafay_managed_kubernetes_platform_mkp" class="discrete text-center">Rafay Managed Kubernetes Platform (MKP)</h2>
 <h2 id="_quick_start_reference_deployment" class="discrete text-left text-center">Quick Start Reference Deployment</h2>
 <div class="imageblock text-center">
 <div class="content">
@@ -873,13 +873,10 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide provides instructions for deploying the Rafay Systems MKP Quick Start reference architecture on the AWS Cloud.</p>
-</div>
-<div class="paragraph">
-<p>This Quick Start is for IT, cloud, and developer professionals who want to deploy a fully functional Kubernetes infrastructure, which assists in the management of containerized applications located in the AWS Cloud, in data centers, and at network edges. With MKP, organizations can leverage critical enterprise-grade requirements such as global visibility, security, and management of Kubernetes clusters from a single console.</p>
+<p>This guide provides instructions to leverage the Rafay MKP Quick Start reference architecture on the AWS Cloud.</p>
 </div>
 <div class="sect2">
-<h3 id="_mkp_on_aws">MKP on AWS</h3>
+<h3 id="_mkp_for_aws">MKP for AWS</h3>
 <div class="paragraph">
 <p>Rafay users can provision Kubernetes clusters in both public-cloud and on-premises environments. Rafay provides a streamlined provisioning approach that allows users to manage Kubernetes clusters.</p>
 </div>
@@ -934,14 +931,14 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <div class="content">
 <a class="image" href="images/architecture_diagram.png"><img src="images/architecture_diagram.png" alt="Architecture"></a>
 </div>
-<div class="title">Figure 1. Quick Start architecture for <em>Rafay Systems</em></div>
+<div class="title">Figure 1. Quick Start architecture for <em>Rafay Managed Kubernetes Platform (MKP)</em></div>
 </div>
 <div class="paragraph">
 <p>As shown in Figure 1, the Quick Start sets up the following:</p>
 </div>
 <div class="paragraph">
 <p>Deploying this Quick Start for a new virtual private cloud (VPC) with
-default parameters builds the following Rafay Systems MKP environment in the
+default parameters builds the following Rafay MKP environment in the
 AWS Cloud. Note that this module is based on the <a href="https://prod-us-west-2.aem-author.marketing.aws.a2z.com/content/aws.amazon.com/staging/en_US/quickstart/architecture/amazon-eks.html" target="_blank" rel="noopener">Modular and Scalable Amazon EKS Architecture</a> Quick Start.</p>
 </div>
 <div class="ulist">
@@ -1028,13 +1025,13 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Deploy Rafay Systems MKP into a new VPC (end-to-end deployment)</strong>. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, EKS cluster, a node group, and other infrastructure components. It then deploys Rafay Systems MKP into this new EKS cluster.</p>
+<p><strong>Deploy Rafay MKP into a new VPC (end-to-end deployment)</strong>. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, EKS cluster, a node group, and other infrastructure components. It then deploys Rafay MKP into this new EKS cluster.</p>
 </li>
 <li>
-<p><strong>Deploy Rafay Systems MKP into a new EKS cluster of an existing VPC</strong>. This option builds a new Amazon EKS cluster, node group, and other infrastructure components into an existing VPC. It then deploys Rafay Systems MKP into this new EKS cluster.</p>
+<p><strong>Deploy Rafay MKP into a new EKS cluster of an existing VPC</strong>. This option builds a new Amazon EKS cluster, node group, and other infrastructure components into an existing VPC. It then deploys Rafay MKP into this new EKS cluster.</p>
 </li>
 <li>
-<p><strong>Deploy Rafay Systems MKP into an existing EKS cluster</strong>. This option provisions Rafay Systems MKP in your existing AWS infrastructure. Note that when deploying into an EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> Quick Start, you must prepare the cluster as described in the <a href="#_deployment_steps">Deployment steps</a> section.</p>
+<p><strong>Deploy Rafay MKP into an existing EKS cluster</strong>. This option provisions Rafay MKP in your existing AWS infrastructure. Note that when deploying into an EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> Quick Start, you must prepare the cluster as described in the <a href="#_deployment_steps">Deployment steps</a> section.</p>
 </li>
 </ul>
 </div>
@@ -1138,9 +1135,9 @@ You are responsible for the cost of the AWS services used while running this Qui
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/6MkEA" target="_blank" rel="noopener">Deploy into a new VPC and new Amazon EKS cluster</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/Ewmdr" target="_blank" rel="noopener">Deploy into a new Amazon EKS cluster in an existing VPC</a></p></td>
-<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/ENbVj" target="_blank" rel="noopener">Deploy into an existing Amazon EKS cluster</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/yyn3b" target="_blank" rel="noopener">Deploy into a new VPC and new Amazon EKS cluster</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/9y6qM" target="_blank" rel="noopener">Deploy into a new Amazon EKS cluster in an existing VPC</a></p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/3ydBP" target="_blank" rel="noopener">Deploy into an existing Amazon EKS cluster</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top"><p class="tableblock"><a href="https://fwd.aws/DgqPB" target="_blank" rel="noopener">View template</a></p></td>
@@ -1159,7 +1156,7 @@ You are responsible for the cost of the AWS services used while running this Qui
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-If you deploy Rafay Systems MKP into an existing VPC, ensure that any private subnets have <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables to allow the Quick Start to download packages and software. Also, ensure that the domain name in the DHCP options is configured. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a>.
+If you deploy Rafay MKP into an existing VPC, ensure that any private subnets have <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables to allow the Quick Start to download packages and software. Also, ensure that the domain name in the DHCP options is configured. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a>.
 </td>
 </tr>
 </table>
@@ -1167,7 +1164,7 @@ If you deploy Rafay Systems MKP into an existing VPC, ensure that any private su
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Rafay Systems MKP is built. The template launches in the us-east-1 Region by default.</p>
+<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Rafay MKP is built. The template launches in the us-east-1 Region by default.</p>
 </li>
 <li>
 <p>On the <strong>Create stack</strong> page, keep the default setting for the template URL, and then choose <strong>Next</strong>.</p>
@@ -1185,7 +1182,7 @@ If you deploy Rafay Systems MKP into an existing VPC, ensure that any private su
 <p>Choose <strong>Create stack</strong> to deploy the stack.</p>
 </li>
 <li>
-<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Rafay Systems MKP deployment is ready.</p>
+<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Rafay MKP deployment is ready.</p>
 </li>
 <li>
 <p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in the following figure.</p>
@@ -1196,7 +1193,7 @@ If you deploy Rafay Systems MKP into an existing VPC, ensure that any private su
 <div class="content">
 <a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439"></a>
 </div>
-<div class="title">Figure 2. Rafay Systems MKP outputs after successful deployment</div>
+<div class="title">Figure 2. Rafay MKP outputs after successful deployment</div>
 </div>
 </div>
 </div>
@@ -1218,12 +1215,12 @@ If you deploy Rafay Systems MKP into an existing VPC, ensure that any private su
 <div class="content">
 <img src="images/testing-deployment.png" alt="testing deployment" width="100%" height="100%">
 </div>
-<div class="title">Figure 3. Imported cluster information Rafay Systems MKP on AWS</div>
+<div class="title">Figure 3. Imported cluster information Rafay MKP on AWS</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_best_practices_for_using_rafay_systems_mkp_on_aws">Best practices for using Rafay Systems MKP on AWS</h2>
+<h2 id="_best_practices_for_using_rafay_mkp_on_aws">Best practices for using Rafay MKP on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For more information, see <a href="https://docs.rafay.co/" target="_blank" rel="noopener">Rafay&#8217;s documentation</a>.</p>
@@ -1289,7 +1286,7 @@ If you deploy Rafay Systems MKP into an existing VPC, ensure that any private su
 <h2 id="_other_useful_information">Other useful information</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Rafay Systems MKP</strong></p>
+<p><strong>Rafay MKP</strong></p>
 </div>
 <div class="ulist">
 <ul>
@@ -1592,7 +1589,7 @@ and share customizations with others.</p>
 </html>
 <!--
 repo commit:
-93193902f8942e58ef0ccfe650ca1d1e64e77c6b
+32888b6f554bcd37dd6e584d0e8ddccc05d4b036
 
 submodule config:
 +df069e8b4d1d4785c42ca6f65a02d880a7d7f3a5 docs/boilerplate (heads/main)

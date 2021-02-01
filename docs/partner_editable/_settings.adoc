@@ -1,9 +1,9 @@
 // Do not change this first attribute. Do change the others.
 :quickstart-team-name: AWS Quick Start team
 :quickstart-project-name: quickstart-eks-rafay-systems
-:partner-product-name: Rafay Systems
+:partner-product-name: Rafay Managed Kubernetes Platform (MKP)
 // For the following attribute, if you have no short name, enter the same name as partner-product-name.
-:partner-product-short-name: Rafay Systems MKP
+:partner-product-short-name: Rafay MKP
 :custom_title:
 // If there's no partner, comment partner-company-name and partner-contributors.
 :partner-company-name: Rafay
@@ -29,9 +29,9 @@
 :eks_addin:
 :disable_regions:
 
-:launch_new_vpc: https://fwd.aws/6MkEA
-:launch_existing_vpc: https://fwd.aws/Ewmdr
-:launch_existing_cluster: https://fwd.aws/ENbVj
+:launch_new_vpc: https://fwd.aws/yyn3b
+:launch_existing_vpc: https://fwd.aws/9y6qM
+:launch_existing_cluster: https://fwd.aws/3ydBP
 :template_new_vpc: https://fwd.aws/DgqPB
 :template_existing_vpc: https://fwd.aws/mbD5g
 :template_existing_cluster: https://fwd.aws/znAVA
