@@ -4,6 +4,7 @@
 
 This guide provides instructions to leverage the {partner-product-short-name} Quick Start reference architecture on the AWS Cloud.
 
+
 === MKP for AWS
 
 Rafay users can provision Kubernetes clusters in both public-cloud and on-premises environments. Rafay provides a streamlined provisioning approach that allows users to manage Kubernetes clusters.
