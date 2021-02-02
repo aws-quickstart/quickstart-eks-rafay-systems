@@ -791,7 +791,7 @@ p.footer-text a{color:#d7d8d8}
 <ul class="sectlevel1">
 <li><a href="#_overview">Overview</a>
 <ul class="sectlevel2">
-<li><a href="#_mkp_for_aws">MKP for AWS</a></li>
+<li><a href="#_mkp_on_aws">MKP on AWS</a></li>
 </ul>
 </li>
 <li><a href="#_software_licenses">Software licenses</a></li>
@@ -873,39 +873,33 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This guide provides instructions to leverage Rafay Managed Kubernetes Platform (MKP) for Amazon Elastic Kubernetes Service (EKS) management and operations.</p>
+<p>This guide provides instructions for deploying the Rafay MKP Quick Start reference architecture on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>Rafay’s Managed Kubernetes Platform lets users easily deploy, operate &amp; manage the lifecycle of Kubernetes clusters and containerized applications in both public-cloud and on-premises environments.</p>
-</div>
-<div class="paragraph">
-<p>This Quick Start is for professionals who want to deploy Kubernetes clusters in AWS Cloud, in data centers, or at the Edge. From MKP’s SaaS-based management console, professionals can automate multi-cluster provisioning, configuration management &amp; upgrades for Kubernetes clusters. MKP also automates containerized application deployment and enables developer access to Kubernetes clusters through a unique, zero-trust connectivity model. Additionally, MKP delivers enterprise-grade capabilities such as single-pane-of-glass monitoring &amp; visibility across AWS regions, cross-cloud role-based access control, and governance.</p>
+<p>This Quick Start is for IT, cloud, and developer professionals who want to deploy a fully functional Kubernetes infrastructure, which assists in the management of containerized applications located in the AWS Cloud, in data centers, and at network edges. With MKP, organizations can leverage critical enterprise-grade requirements such as global visibility, security, and management of Kubernetes clusters from a single console.</p>
 </div>
 <div class="sect2">
-<h3 id="_mkp_for_aws">MKP for AWS</h3>
+<h3 id="_mkp_on_aws">MKP on AWS</h3>
 <div class="paragraph">
-<p>Rafay users can provision and manage lifecycle for Kubernetes clusters in both cloud and on-premises environments. In public cloud environments, complete lifecycle management of the natively available managed Kubernetes service (e.g. EKS in AWS) is supported.</p>
+<p>Rafay users can provision Kubernetes clusters in both public-cloud and on-premises environments. Rafay provides a streamlined provisioning approach that allows users to manage Kubernetes clusters.</p>
 </div>
 <div class="paragraph">
-<p><strong>Complete lifecycle management for natively available managed Kubernetes services (e.g. EKS)</strong> clusters is supported on the MKP, where users can programmatically (or via the MKP console) create and configure EKS clusters, along with core infrastructure components (that is, compute, storage, and networking). This capability is designed to be an automated experience for users. For high availability (HA) clusters, MKP automatically provisions master nodes in different Availability Zones (AZs).</p>
+<p><strong>Automatically provisioned</strong> clusters are designed for cloud environments where Rafay can programmatically create and configure core infrastructure components (that is, compute, storage, and networking). It&#8217;s designed to be an automated experience for users. This approach is currently supported for Amazon Elastic Compute Cloud (Amazon EC2) and Amazon Elastic Kubernetes Service (Amazon EKS) environments. For high availability (HA) clusters, Rafay automatically provisions master nodes in different Availability Zones (AZs).</p>
 </div>
 <div class="paragraph">
-<p><strong>Complete lifecycle management for Kubernetes clusters deployed on-premises or at the Edge</strong> can be carried our programmatically (or via the MKP console) by users. This approach is agnostic to the type and provider of the underlying infrastructure, and is designed to work with bare metal servers and virtual machines (VMs).</p>
+<p><strong>Manually provisioned</strong> clusters are agnostic to the type and provider of the underlying infrastructure and are mostly used for clusters that run bare metal and virtual machines (VMs). With this approach, customers are responsible for the underlying hardware and operating system of the nodes.</p>
 </div>
 <div class="paragraph">
-<p>Pre-existing clusters can easily be imported into MKP. When clusters provisioned or imported into MKP, MKP provides a single pane of glass that provides visibility and lifecycle management of applications and clusters across all environments. The benefits of this include, but not limited to, the following:</p>
+<p>Existing clusters (for example, within a data center) can be imported to the MKP. When all clusters are provisioned or imported, the MKP provides a single console that provides visibility and management of applications and clusters across the entire infrastructure. The benefits of this include the following:</p>
 </div>
 <div class="paragraph">
-<p><strong>Single pane-of-glass management across AWS Regions and on-premises</strong>: Use a single console to deploy, view, and manage clusters and workloads across all clusters.</p>
+<p><strong>Single pane-of-glass management across AWS Regions and on premises</strong>: Use a single console to deploy, view, and manage clusters and workloads across all clusters.</p>
 </div>
 <div class="paragraph">
 <p><strong>Accelerate migration to AWS:</strong> With Rafay, Amazon EKS clusters can be running in minutes (including Spot Instances), and applications can be deployed in even less time.</p>
 </div>
 <div class="paragraph">
 <p><strong>Apply enterprise-grade K8 security on AWS</strong>: Rafay’s zero-trust architecture for Kubernetes lets enterprises  cloak their Kubernetes API endpoints on AWS without affecting CI/CD and developer workflows.</p>
-</div>
-<div class="paragraph">
-<p><strong>Multi-cluster application deployment across any environment:</strong> Rafay’s zero-trust architecture for Kubernetes lets enterprises deploy containerized applications easily using their existing CI/CD systems or via Rafay’s turnkey gitops feature set.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -946,13 +940,9 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <p>As shown in Figure 1, the Quick Start sets up the following:</p>
 </div>
 <div class="paragraph">
-<p>Use this Quick Start to start leveraging Rafay’s Managed Kubernetes Platform to simplify operations for new and existing Amazon Elastic Kubernetes Service (Amazon EKS). Note that this module is based on the <a href="https://prod-us-west-2.aem-author.marketing.aws.a2z.com/content/aws.amazon.com/staging/en_US/quickstart/architecture/amazon-eks.html" target="_blank" rel="noopener">Modular and Scalable Amazon EKS Architecture</a> Quick Start.</p>
-</div>
-<div id="architecture" class="imageblock">
-<div class="content">
-<img src="images/architecture_diagram.png" alt="architecture diagram" width="100%" height="100%">
-</div>
-<div class="title">Figure 2. Quick Start architecture for Rafay MKP on AWS</div>
+<p>Deploying this Quick Start for a new virtual private cloud (VPC) with
+default parameters builds the following Rafay MKP environment in the
+AWS Cloud. Note that this module is based on the <a href="https://prod-us-west-2.aem-author.marketing.aws.a2z.com/content/aws.amazon.com/staging/en_US/quickstart/architecture/amazon-eks.html" target="_blank" rel="noopener">Modular and Scalable Amazon EKS Architecture</a> Quick Start.</p>
 </div>
 <div class="ulist">
 <ul>
@@ -976,17 +966,13 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 </div>
 </li>
 <li>
-<p>An Amazon EKS cluster, which creates the Kubernetes control plane.</p>
-</li>
-<li>
 <p>In the private subnets:</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Kubernetes worker nodes, which will be automatically set up with the Rafay Operator software, which connects back to the SaaS-based Rafay Managed Kubernetes.</p>
 </li>
-</ul>
-</div>
+<li>
+<p>A group of Kubernetes nodes in an Auto Scaling group that run the Rafay Operator software with tie-ins to the Rafay SaaS controller.</p>
+</li>
+<li>
+<p>Amazon EKS, which creates the Kubernetes control plane.</p>
 </li>
 </ul>
 </div>
@@ -1210,7 +1196,7 @@ If you deploy Rafay MKP into an existing VPC, ensure that any private subnets ha
 <div class="content">
 <a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439"></a>
 </div>
-<div class="title">Figure 3. Rafay MKP outputs after successful deployment</div>
+<div class="title">Figure 2. Rafay MKP outputs after successful deployment</div>
 </div>
 </div>
 </div>
@@ -1232,7 +1218,7 @@ If you deploy Rafay MKP into an existing VPC, ensure that any private subnets ha
 <div class="content">
 <img src="images/testing-deployment.png" alt="testing deployment" width="100%" height="100%">
 </div>
-<div class="title">Figure 4. Imported cluster information Rafay MKP on AWS</div>
+<div class="title">Figure 3. Imported cluster information Rafay MKP on AWS</div>
 </div>
 </div>
 </div>
@@ -1606,7 +1592,7 @@ and share customizations with others.</p>
 </html>
 <!--
 repo commit:
-ed3e29443cf2c558d2dd41dc98628001cc88c445
+5e558e56c127d8f3bce55e3115e55615a0f30ccb
 
 submodule config:
 +df069e8b4d1d4785c42ca6f65a02d880a7d7f3a5 docs/boilerplate (heads/main)

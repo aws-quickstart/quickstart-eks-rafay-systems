@@ -1,11 +1,9 @@
-// Edit this placeholder text to accurately describe your architecture.
+// Edit this placeholder text to accurately describe your architecture.#
 
 This Quick Start provides three deployment options:
 
-* *Set up MKP to work with an EKS cluster provisioned in a net-new VPC (end-to-end deployment)*. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, EKS cluster, a node group, and other infrastructure components. It then deploys the Rafay Kubernetes Operator into this new EKS cluster.
-
-* *Deploy {partner-product-short-name} MKP into a new EKS cluster of an existing VPC*. This option builds a new Amazon EKS cluster, node group, and other infrastructure components into an existing VPC. It then deploys the Rafay Kubernetes Operator into this new EKS cluster.
-
+* *Deploy {partner-product-short-name} into a new VPC*. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, and other infrastructure components. It then deploys {partner-product-short-name} into this new VPC.
+* *Deploy {partner-product-short-name} into an existing VPC*. This option provisions {partner-product-short-name} in your existing AWS infrastructure.
 * *Deploy {partner-product-short-name} MKP into an existing EKS Cluster*. This option deploys the Rafay Kubernetes Operator into your existing EKS cluster. Note that when deploying into an EKS cluster that was not created by the Amazon EKS on the AWS Cloud Quick Start, you must prepare the cluster as described in the Deployment steps section.
 
 The Quick Start provides separate templates for these options. It also lets you configure Classless Inter-Domain Routing (CIDR) blocks, instance types, and {partner-product-short-name} settings, as discussed later in this guide.
