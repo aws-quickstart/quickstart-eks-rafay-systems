@@ -29,9 +29,9 @@
 :eks_addin:
 :disable_regions:
 
-:launch_new_vpc: https://fwd.aws/6MkEA
-:launch_existing_vpc: https://fwd.aws/Ewmdr
-:launch_existing_cluster: https://fwd.aws/ENbVj
+:launch_new_vpc: https://fwd.aws/yyn3b
+:launch_existing_vpc: https://fwd.aws/9y6qM
+:launch_existing_cluster: https://fwd.aws/3ydBP
 :template_new_vpc: https://fwd.aws/DgqPB
 :template_existing_vpc: https://fwd.aws/mbD5g
 :template_existing_cluster: https://fwd.aws/znAVA
