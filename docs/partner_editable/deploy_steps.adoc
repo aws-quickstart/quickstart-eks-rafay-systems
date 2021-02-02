@@ -40,14 +40,14 @@ NOTE: You are responsible for the cost of the AWS services used while running th
 ^|https://fwd.aws/znAVA[View template^]
 |===
 
+New clusters take about {deployment_time} minutes to deploy. Existing clusters take about 5 minutes to deploy.
+
 // Adapt the following warning to your Quick Start.
-WARNING: If you deploy {partner-product-short-name} into an existing VPC, ensure that your VPC has two private subnets in different Availability Zones for the workload instances and that the subnets aren’t shared. This Quick Start doesn’t support https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html
+WARNING: If you set up {partner-product-short-name} with an existing VPC, ensure that your VPC has two private subnets in different Availability Zones for the workload instances and that the subnets aren’t shared. This Quick Start doesn’t support https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html
 
 //TODO If the QS doesn't support shared subnets, why include the following sentence about route tables?
 
 [shared subnets^]. These subnets require https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html[NAT gateways^] in their route tables, to allow the instances to download packages and software without exposing them to the internet. Also ensure that the domain name in the DHCP options is configured according to the http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html[DHCP options sets^]. Provide your VPC settings when you launch the Quick Start.
-
-Each deployment takes about {deployment_time} to complete.
 
 [start=2]
 . Check the AWS Region displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for {partner-product-short-name} is built. The template launches in the {default_deployment_region} Region by default.
