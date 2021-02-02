@@ -36,7 +36,7 @@ NOTE: You are responsible for the cost of the AWS services used while running th
 ^|https://fwd.aws/9y6qM[Deploy {partner-product-short-name} into an existing VPC on AWS^]
 ^|https://fwd.aws/mbD5g[View template^]
 
-^|https://fwd.aws/3ydBP[Deploy {partner-product-short-name} into an existing Amazon EKS cluster on AWS^]
+^|https://fwd.aws/3ydBP[Deploy {partner-product-short-name} into an existing Amazon EKS Cluster on AWS^]
 ^|https://fwd.aws/znAVA[View template^]
 |===
 
