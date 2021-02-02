@@ -2,7 +2,7 @@
 // Identify your target audience and explain how/why they would use this Quick Start.
 //Avoid borrowing text from third-party websites (copying text from AWS service documentation is fine). Also, avoid marketing-speak, focusing instead on the technical aspect.
 
-This guide provides instructions to leverage Rafay’s Managed Kubernetes Platform (MKP) for Amazon Elastic Kubernetes Service (EKS) management and operations.
+This guide provides instructions to leverage {partner-product-name} for Amazon Elastic Kubernetes Service (EKS) management and operations.
 
 Rafay’s Managed Kubernetes Platform lets users easily deploy, operate & manage the lifecycle of Kubernetes clusters and containerized applications in both public-cloud and on-premises environments.
 

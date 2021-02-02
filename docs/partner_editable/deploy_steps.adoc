@@ -30,14 +30,17 @@ NOTE: You are responsible for the cost of the AWS services used while running th
 
 [cols=2*]
 |===
-^|http://qs_launch_link[Deploy {partner-product-short-name} into a new VPC on AWS^]
-^|http://qs_template_link[View template^]
+^|https://fwd.aws/yyn3b[Deploy {partner-product-short-name} into a new VPC on AWS^]
+^|https://fwd.aws/DgqPB[View template^]
 
-^|http://qs_launch_link[Deploy {partner-product-short-name} into an existing VPC on AWS^]
-^|http://qs_template_link[View template^]
+^|https://fwd.aws/9y6qM[Deploy {partner-product-short-name} into an existing VPC on AWS^]
+^|https://fwd.aws/mbD5g[View template^]
+
+^|https://fwd.aws/3ydBP[Deploy {partner-product-short-name} into an existing Amazon EKS cluster on AWS^]
+^|https://fwd.aws/znAVA[View template^]
 |===
 
-New clusters take about 30 minutes to deploy. Existing clusters take about 5 minutes to deploy.
+New clusters take about {deployment_time} minutes to deploy. Existing clusters take about 5 minutes to deploy.
 
 // Adapt the following warning to your Quick Start.
 WARNING: If you set up {partner-product-short-name} with an existing VPC, ensure that your VPC has two private subnets in different Availability Zones for the workload instances and that the subnets aren’t shared. This Quick Start doesn’t support https://docs.aws.amazon.com/vpc/latest/userguide/vpc-sharing.html
