@@ -1,9 +1,9 @@
 // Do not change this first attribute. Do change the others.
 :quickstart-team-name: AWS Quick Start team
 :quickstart-project-name: quickstart-eks-rafay-systems
-:partner-product-name: Rafay Systems
+:partner-product-name: afay Managed Kubernetes Platform (MKP)
 // For the following attribute, if you have no short name, enter the same name as partner-product-name.
-:partner-product-short-name: Rafay Systems MKP
+:partner-product-short-name: Rafay MKP
 :custom_title:
 // If there's no partner, comment partner-company-name and partner-contributors.
 :partner-company-name: Rafay
