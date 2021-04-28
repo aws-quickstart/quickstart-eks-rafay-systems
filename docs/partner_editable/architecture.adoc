@@ -1,6 +1,4 @@
-Deploying this Quick Start for a new virtual private cloud (VPC) with
-default parameters builds the following {partner-product-short-name} environment in the
-AWS Cloud. Note that this module is based on the https://prod-us-west-2.aem-author.marketing.aws.a2z.com/content/aws.amazon.com/staging/en_US/quickstart/architecture/amazon-eks.html[Modular and Scalable Amazon EKS Architecture^] Quick Start.
+Deploying this Quick Start with default parameters into an existing Amazon EKS cluster builds the following environment. For a diagram of the new virtual private cloud (VPC) and Amazon EKS cluster, see the https://prod-us-west-2.aem-author.marketing.aws.a2z.com/content/aws.amazon.com/staging/en_US/quickstart/architecture/amazon-eks.html[Modular and Scalable Amazon EKS Architecture^] Quick Start.
 
 // Replace this example diagram with your own. Send us your source PowerPoint file. Be sure to follow our guidelines here : http://(we should include these points on our contributors giude)
 :xrefstyle: short
@@ -11,12 +9,11 @@ AWS Cloud. Note that this module is based on the https://prod-us-west-2.aem-auth
 //As shown in <<architecture>>, the Quick Start sets up the following:
 
 * A highly available architecture that spans three Availability Zones.*
-* A virtual private cloud (VPC) configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*
+* A VPC configured with public and private subnets, according to AWS best practices, to provide you with your own virtual network on AWS.*
 * In the public subnets:
 ** Managed network address translation (NAT) gateways to allow outbound internet access for resources in the private subnets.*
-** Linux bastion hosts in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon EC2 instances in the private subnets. The bastion host is configured with the Kubernetes Kubectl command line interface for managing the Kubernetes cluster.
-* In the private subnets:
-* A group of Kubernetes nodes in an Auto Scaling group that run the Rafay Operator software with tie-ins to the Rafay SaaS controller.
+** Linux bastion hosts in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon EC2 instances in the private subnets. To manage the cluster, the bastion hosts are configured with the Kubernetes `Kubectl` command line interface.
+* In the private subnets, Kubernetes worker nodes that automatically set up the Rafay Operator software, which connects to the Rafay Kubernetes Management Cloud.
 * Amazon EKS, which creates the Kubernetes control plane.
 
 
