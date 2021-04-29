@@ -7,6 +7,5 @@
 /output
 __pycache__
 /docs/generated/
-/index.html
 /.python-version
 /.taskcat_overrides.yml
