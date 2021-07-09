@@ -155,7 +155,7 @@ Resources:
     Properties:
       ClusterName: !Ref EksClusterName
       Url: !Sub 's3://${RafayCreateCluster.rafay_s3_bucket}/${RafayCreateCluster.rafay_s3_key}'
-      Namespace: default
+      Namespace: rafay-system
   CopyZips:
     Type: Custom::CopyZips
     Properties:
