@@ -4,7 +4,7 @@
 
 This Quick Start reference deployment guide provides step-by-step instructions for deploying Rafay’s Kubernetes Operations Platform (KOP) for Amazon Elastic Kubernetes Service (Amazon EKS) management and operations. KOP lets you deploy, operate, and manage the lifecycle of Kubernetes clusters and containerized applications in both public-cloud and on-premises environments.
 
-With the Rafay Kubernetes Operations Platform, enterprises leverage a single operations platform for the lifecycle management of Amazon EKS clusters and containerized apps. Rafay empowers Platform and SRE  teams to carry out their function easily, resulting in faster deployments of new apps to production, reduced app downtimes, and elimination of security & compliance risk associated with their infrastructure.
+With the Rafay Kubernetes Operations Platform, enterprises use a single operations platform to manage the lifecycle of Amazon EKS clusters and containerized applications. With KOP, your platform and site-reliability engineering (SRE) teams can speed up the deployment of new applications to production, reduce application downtimes, and reduce security and compliance risks associated with their infrastructure.
 
 This Quick Start is for Platform and SRE professionals who want to deploy & manage the lifecycle of Kubernetes clusters & modern apps in the AWS Cloud, in data centers, and at network edges. Rafay’s SaaS-based platform can automate multi-cluster provisioning, configuration management, and upgrades for Kubernetes clusters through an automation-ready CLI, a Terraform provider, a standards-based API, and an easy-to-use use web-based console.
 
