@@ -791,7 +791,7 @@ p.footer-text a{color:#d7d8d8}
 <ul class="sectlevel1">
 <li><a href="#_overview">Overview</a>
 <ul class="sectlevel2">
-<li><a href="#_kmc_on_aws">KMC on AWS</a></li>
+<li><a href="#_kop_on_aws">KOP on AWS</a></li>
 </ul>
 </li>
 <li><a href="#_software_licenses">Software licenses</a></li>
@@ -812,7 +812,7 @@ p.footer-text a{color:#d7d8d8}
 </ul>
 </li>
 <li><a href="#_test_the_deployment">Test the deployment</a></li>
-<li><a href="#_best_practices_for_using_rafay_kmc_on_aws">Best practices for using Rafay KMC on AWS</a></li>
+<li><a href="#_best_practices_for_using_rafay_kop_on_aws">Best practices for using Rafay KOP on AWS</a></li>
 <li><a href="#_security">Security</a>
 <ul class="sectlevel2">
 <li><a href="#_email_allow_listing">Email allow listing</a></li>
@@ -839,7 +839,7 @@ p.footer-text a{color:#d7d8d8}
 <div id="content">
 <div id="preamble">
 <div class="sectionbody">
-<h2 id="_rafay_kubernetes_management_cloud" class="discrete text-center">Rafay Kubernetes Management Cloud</h2>
+<h2 id="_rafay_kubernetes_operations_platform" class="discrete text-center">Rafay Kubernetes Operations Platform</h2>
 <h2 id="_quick_start_reference_deployment" class="discrete text-left text-center">Quick Start Reference Deployment</h2>
 <div class="imageblock text-center">
 <div class="content">
@@ -873,21 +873,21 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_overview">Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This Quick Start reference deployment guide provides step-by-step instructions for deploying Rafay’s Kubernetes Management Cloud (KMC) for Amazon Elastic Kubernetes Service (Amazon EKS) management and operations. KMC lets you deploy, operate, and manage the lifecycle of Kubernetes clusters and containerized applications in both public-cloud and on-premises environments.</p>
+<p>This Quick Start reference deployment guide provides step-by-step instructions for deploying Rafay’s Kubernetes Operations Platform (KOP) for Amazon Elastic Kubernetes Service (Amazon EKS) management and operations. KOP lets you deploy, operate, and manage the lifecycle of Kubernetes clusters and containerized applications in both public-cloud and on-premises environments.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start is for IT and DevOps professionals who want to deploy Kubernetes clusters in the AWS Cloud, in data centers, and at network edges. KMC uses a software as a service (SaaS) management console that automates multicluster provisioning, configuration management, and upgrades. It also automates the deployment of containerized applications and enables access to Kubernetes clusters through a zero-trust connectivity model.</p>
+<p>This Quick Start is for IT and DevOps professionals who want to deploy Kubernetes clusters in the AWS Cloud, in data centers, and at network edges. KOP uses a software as a service (SaaS) management console that automates multicluster provisioning, configuration management, and upgrades. It also automates the deployment of containerized applications and enables access to Kubernetes clusters through a zero-trust connectivity model.</p>
 </div>
 <div class="paragraph">
-<p>Through a single user interface, KMC provides enterprise-grade capabilities, such as monitoring and visibility across AWS Regions, role-based access control, and governance.</p>
+<p>Through a single user interface, KOP provides enterprise-grade capabilities, such as monitoring and visibility across AWS Regions, role-based access control, and governance.</p>
 </div>
 <div class="sect2">
-<h3 id="_kmc_on_aws">KMC on AWS</h3>
+<h3 id="_kop_on_aws">KOP on AWS</h3>
 <div class="paragraph">
-<p>KMC manages the complete lifecycle of native Kubernetes services. You can programmatically (or via the KMC console) create and configure EKS clusters and core infrastructure components, such as computation, storage, and networking. For high-availability clusters, KMC automatically provisions worker nodes across three Availability Zones.</p>
+<p>KOP manages the complete lifecycle of native Kubernetes services. You can programmatically (or via the KOP console) create and configure EKS clusters and core infrastructure components, such as computation, storage, and networking. For high-availability clusters, KOP automatically provisions worker nodes across three Availability Zones.</p>
 </div>
 <div class="paragraph">
-<p>This approach is agnostic to the type and provider of the underlying infrastructure and is designed to work with bare-metal servers and virtual machines. When pre-existing clusters are provisioned or imported into KMC, KMC provides a source of visibility and lifecycle management for applications and clusters across environments. The benefits of this include the following:</p>
+<p>This approach is agnostic to the type and provider of the underlying infrastructure and is designed to work with bare-metal servers and virtual machines. When pre-existing clusters are provisioned or imported into KOP, KOP provides a source of visibility and lifecycle management for applications and clusters across environments. The benefits of this include the following:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -921,7 +921,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Using this Quick Start in a production environment requires a KMC license. To acquire a license <a href="https://console.rafay.dev/#/signup" target="_blank" rel="noopener">create a Rafay account</a>.</p>
+<p>Using this Quick Start in a production environment requires a KOP license. To acquire a license <a href="https://console.rafay.dev/#/signup" target="_blank" rel="noopener">create a Rafay account</a>.</p>
 </div>
 </div>
 </div>
@@ -935,7 +935,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 <div class="content">
 <a class="image" href="images/architecture_diagram.png"><img src="images/architecture_diagram.png" alt="Architecture"></a>
 </div>
-<div class="title">Figure 1. Quick Start architecture for <em>Rafay Kubernetes Management Cloud</em></div>
+<div class="title">Figure 1. Quick Start architecture for <em>Rafay Kubernetes Operations Platform</em></div>
 </div>
 <div class="paragraph">
 <p>As shown in Figure 1, the Quick Start sets up the following:</p>
@@ -965,7 +965,7 @@ Amazon may share user-deployment information with the AWS Partner that collabora
 </div>
 </li>
 <li>
-<p>In the private subnets, Kubernetes worker nodes that automatically set up the Rafay Operator software, which connects to the Rafay Kubernetes Management Cloud.</p>
+<p>In the private subnets, Kubernetes worker nodes that automatically set up the Rafay Operator software, which connects to the Rafay Kubernetes Operations Platform.</p>
 </li>
 <li>
 <p>Amazon EKS, which creates the Kubernetes control plane.</p>
@@ -1027,13 +1027,13 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Deploy Rafay KMC into a new VPC (end-to-end deployment)</strong>. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, EKS cluster, a node group, and other infrastructure components. It then deploys Rafay KMC into this new EKS cluster.</p>
+<p><strong>Deploy Rafay KOP into a new VPC (end-to-end deployment)</strong>. This option builds a new AWS environment consisting of the VPC, subnets, NAT gateways, security groups, bastion hosts, EKS cluster, a node group, and other infrastructure components. It then deploys Rafay KOP into this new EKS cluster.</p>
 </li>
 <li>
-<p><strong>Deploy Rafay KMC into a new EKS cluster of an existing VPC</strong>. This option builds a new Amazon EKS cluster, node group, and other infrastructure components into an existing VPC. It then deploys Rafay KMC into this new EKS cluster.</p>
+<p><strong>Deploy Rafay KOP into a new EKS cluster of an existing VPC</strong>. This option builds a new Amazon EKS cluster, node group, and other infrastructure components into an existing VPC. It then deploys Rafay KOP into this new EKS cluster.</p>
 </li>
 <li>
-<p><strong>Deploy Rafay KMC into an existing EKS cluster</strong>. This option provisions Rafay KMC in your existing AWS infrastructure. Note that when deploying into an EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> Quick Start, you must prepare the cluster as described in the <a href="#_deployment_steps">Deployment steps</a> section.</p>
+<p><strong>Deploy Rafay KOP into an existing EKS cluster</strong>. This option provisions Rafay KOP in your existing AWS infrastructure. Note that when deploying into an EKS cluster that was not created by the <a href="https://aws-quickstart.github.io/quickstart-amazon-eks/" target="_blank" rel="noopener">Amazon EKS on the AWS Cloud</a> Quick Start, you must prepare the cluster as described in the <a href="#_deployment_steps">Deployment steps</a> section.</p>
 </li>
 </ul>
 </div>
@@ -1158,7 +1158,7 @@ You are responsible for the cost of the AWS services used while running this Qui
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-If you deploy Rafay KMC into an existing VPC, ensure that any private subnets have <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables to allow the Quick Start to download packages and software. Also, ensure that the domain name in the DHCP options is configured. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a>.
+If you deploy Rafay KOP into an existing VPC, ensure that any private subnets have <a href="https://docs.aws.amazon.com/vpc/latest/userguide/vpc-nat-gateway.html" target="_blank" rel="noopener">NAT gateways</a> in their route tables to allow the Quick Start to download packages and software. Also, ensure that the domain name in the DHCP options is configured. For more information, see <a href="http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_DHCP_Options.html" target="_blank" rel="noopener">DHCP options sets</a>.
 </td>
 </tr>
 </table>
@@ -1166,7 +1166,7 @@ If you deploy Rafay KMC into an existing VPC, ensure that any private subnets ha
 <div class="olist arabic">
 <ol class="arabic" start="2">
 <li>
-<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Rafay KMC is built. The template launches in the us-east-1 Region by default.</p>
+<p>Check the AWS Region that’s displayed in the upper-right corner of the navigation bar, and change it if necessary. This is where the network infrastructure for Rafay KOP is built. The template launches in the us-east-1 Region by default.</p>
 </li>
 <li>
 <p>On the <strong>Create stack</strong> page, keep the default setting for the template URL, and then choose <strong>Next</strong>.</p>
@@ -1185,7 +1185,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <p>Choose <strong>Create stack</strong> to deploy the stack.</p>
 </li>
 <li>
-<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Rafay KMC deployment is ready.</p>
+<p>Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Rafay KOP deployment is ready.</p>
 </li>
 <li>
 <p>Use the values displayed in the <strong>Outputs</strong> tab for the stack, as shown in the following figure.</p>
@@ -1196,7 +1196,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="content">
 <a class="image" href="images/cfn_outputs.png"><img src="images/cfn_outputs.png" alt="cfn_outputs" width="648" height="439"></a>
 </div>
-<div class="title">Figure 2. Rafay KMC outputs after successful deployment</div>
+<div class="title">Figure 2. Rafay KOP outputs after successful deployment</div>
 </div>
 </div>
 </div>
@@ -1218,12 +1218,12 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="content">
 <img src="images/testing-deployment.png" alt="testing deployment" width="100%" height="100%">
 </div>
-<div class="title">Figure 3. Imported cluster information Rafay KMC on AWS</div>
+<div class="title">Figure 3. Imported cluster information Rafay KOP on AWS</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_best_practices_for_using_rafay_kmc_on_aws">Best practices for using Rafay KMC on AWS</h2>
+<h2 id="_best_practices_for_using_rafay_kop_on_aws">Best practices for using Rafay KOP on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>For more information, see <a href="https://docs.rafay.co/" target="_blank" rel="noopener">Rafay&#8217;s documentation</a>.</p>
@@ -1234,7 +1234,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <h2 id="_security">Security</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following are important considerations related to the Rafay Systems KMC:</p>
+<p>The following are important considerations related to the Rafay Systems KOP:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -1248,14 +1248,14 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <p>With auto provisioning, you can deploy a cluster in moments. In order to do this, you must provide credentials that allow programmatic access to Amazon AWS.</p>
 </li>
 <li>
-<p>Two types of credentials are supported: IAM role and IAM user. For more information about how to create and configure KMC credentials, see the <a href="https://docs.rafay.co/clusters/provision/eks/credentials/" target="_blank" rel="noopener">KMC documentation</a>.</p>
+<p>Two types of credentials are supported: IAM role and IAM user. For more information about how to create and configure KOP credentials, see the <a href="https://docs.rafay.co/clusters/provision/eks/credentials/" target="_blank" rel="noopener">KOP documentation</a>.</p>
 </li>
 </ul>
 </div>
 <div class="sect2">
 <h3 id="_email_allow_listing">Email allow listing</h3>
 <div class="paragraph">
-<p>A third-party service is used for emails sent by Rafay KMC (for example, for first-time user activation, password resets, and notifications). If users in your organization are not receiving these emails, we recommend allow listing the sender’s IP. The dedicated IP address used for sending emails by KMC is <code>149.72.39.92</code>.</p>
+<p>A third-party service is used for emails sent by Rafay KOP (for example, for first-time user activation, password resets, and notifications). If users in your organization are not receiving these emails, we recommend allow listing the sender’s IP. The dedicated IP address used for sending emails by KOP is <code>149.72.39.92</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1280,7 +1280,7 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <div class="sect2">
 <h3 id="_controller_details">Controller details</h3>
 <div class="paragraph">
-<p>For greater control over IP connectivity between EKS clusters and KMC, customers can add relevant IP addresses and fully qualified domain names to their firewalls or security groups. This helps to ensure that outbound connectivity is allowed only for specified IPs. For more information, see <a href="https://docs.rafay.co/security/overview/" target="_blank" rel="noopener">Rafay&#8217;s security overview</a>.</p>
+<p>For greater control over IP connectivity between EKS clusters and KOP, customers can add relevant IP addresses and fully qualified domain names to their firewalls or security groups. This helps to ensure that outbound connectivity is allowed only for specified IPs. For more information, see <a href="https://docs.rafay.co/security/overview/" target="_blank" rel="noopener">Rafay&#8217;s security overview</a>.</p>
 </div>
 </div>
 </div>
@@ -1289,12 +1289,12 @@ is provided in the <a href="#_parameter_reference">Parameter reference</a> secti
 <h2 id="_other_useful_information">Other useful information</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Rafay KMC</strong></p>
+<p><strong>Rafay KOP</strong></p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="https://docs.rafay.co/" target="_blank" rel="noopener">Rafay KMC documentation</a></p>
+<p><a href="https://docs.rafay.co/" target="_blank" rel="noopener">Rafay KOP documentation</a></p>
 </li>
 </ul>
 </div>
@@ -1585,7 +1585,7 @@ and share customizations with others.</p>
 </html>
 <!--
 repo commit:
-63cd33129251bdde4f8693b62f55a6fedc5a238b
+dce81e8388d4fbecc7c2bb8fa5e08e78b17d8d4b
 
 submodule config:
  0ed73f22f2ea225fb62a8e20369423c77d41ba57 docs/boilerplate (remotes/origin/codebuild-48-g0ed73f2)

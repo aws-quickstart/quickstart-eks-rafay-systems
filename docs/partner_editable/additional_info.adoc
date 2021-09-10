@@ -21,7 +21,7 @@ For more information, see https://docs.rafay.co/[Rafay's documentation^].
 == Security
 // Provide post-deployment best practices for using the technology on AWS, including considerations such as migrating data, backups, ensuring high performance, high availability, etc. Link to software documentation for detailed information.
 
-The following are important considerations related to the Rafay Systems KMC:
+The following are important considerations related to the Rafay Systems KOP:
 
 * Roles-based access control and Amazon IAM.
 
@@ -29,11 +29,11 @@ The following are important considerations related to the Rafay Systems KMC:
 
 * With auto provisioning, you can deploy a cluster in moments. In order to do this, you must provide credentials that allow programmatic access to Amazon AWS.
 
-* Two types of credentials are supported: IAM role and IAM user. For more information about how to create and configure KMC credentials, see the https://docs.rafay.co/clusters/provision/eks/credentials/[KMC documentation^].
+* Two types of credentials are supported: IAM role and IAM user. For more information about how to create and configure KOP credentials, see the https://docs.rafay.co/clusters/provision/eks/credentials/[KOP documentation^].
 
 === Email allow listing
 
-A third-party service is used for emails sent by Rafay KMC (for example, for first-time user activation, password resets, and notifications). If users in your organization are not receiving these emails, we recommend allow listing the sender’s IP. The dedicated IP address used for sending emails by KMC is `149.72.39.92`.
+A third-party service is used for emails sent by Rafay KOP (for example, for first-time user activation, password resets, and notifications). If users in your organization are not receiving these emails, we recommend allow listing the sender’s IP. The dedicated IP address used for sending emails by KOP is `149.72.39.92`.
 
 === Network firewall rules
 
@@ -46,7 +46,7 @@ The Rafay Kubernetes operator uses only `TCP Port 443, Outbound` to communicate 
 
 === Controller details
 
-For greater control over IP connectivity between EKS clusters and KMC, customers can add relevant IP addresses and fully qualified domain names to their firewalls or security groups. This helps to ensure that outbound connectivity is allowed only for specified IPs. For more information, see https://docs.rafay.co/security/overview/[Rafay's security overview^].
+For greater control over IP connectivity between EKS clusters and KOP, customers can add relevant IP addresses and fully qualified domain names to their firewalls or security groups. This helps to ensure that outbound connectivity is allowed only for specified IPs. For more information, see https://docs.rafay.co/security/overview/[Rafay's security overview^].
 
 
 
@@ -55,7 +55,7 @@ For greater control over IP connectivity between EKS clusters and KMC, customers
 
 *{partner-product-short-name}*
 
-* https://docs.rafay.co/[Rafay KMC documentation^]
+* https://docs.rafay.co/[Rafay KOP documentation^]
 
 *AWS resources*
 

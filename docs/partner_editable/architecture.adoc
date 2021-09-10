@@ -13,7 +13,7 @@ Deploying this Quick Start with default parameters into an existing Amazon EKS c
 * In the public subnets:
 ** Managed network address translation (NAT) gateways to allow outbound internet access for resources in the private subnets.*
 ** Linux bastion hosts in an Auto Scaling group to allow inbound Secure Shell (SSH) access to Amazon EC2 instances in the private subnets. To manage the cluster, the bastion hosts are configured with the Kubernetes `Kubectl` command line interface.
-* In the private subnets, Kubernetes worker nodes that automatically set up the Rafay Operator software, which connects to the Rafay Kubernetes Management Cloud.
+* In the private subnets, Kubernetes worker nodes that automatically set up the Rafay Operator software, which connects to the Rafay Kubernetes Operations Platform.
 * Amazon EKS, which creates the Kubernetes control plane.
 
 
