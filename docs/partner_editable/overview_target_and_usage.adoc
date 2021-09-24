@@ -4,10 +4,11 @@
 
 This Quick Start reference deployment guide provides step-by-step instructions for deploying Rafay’s Kubernetes Operations Platform (KOP) for Amazon Elastic Kubernetes Service (Amazon EKS) management and operations. KOP lets you deploy, operate, and manage the lifecycle of Kubernetes clusters and containerized applications in both public-cloud and on-premises environments.
 
-This Quick Start is for IT and DevOps professionals who want to deploy Kubernetes clusters in the AWS Cloud, in data centers, and at network edges. KOP uses a software as a service (SaaS) management console that automates multicluster provisioning, configuration management, and upgrades. It also automates the deployment of containerized applications and enables access to Kubernetes clusters through a zero-trust connectivity model.
+With the Rafay Kubernetes Operations Platform, enterprises use a single operations platform to manage the lifecycle of Amazon EKS clusters and containerized applications. With KOP, your platform and site-reliability engineering (SRE) teams can speed up the deployment of new applications to production, reduce application downtimes, and reduce security and compliance risks associated with their infrastructure.
 
-Through a single user interface, KOP provides enterprise-grade capabilities, such as monitoring and visibility across AWS Regions, role-based access control, and governance.
+This Quick Start is for platform and SRE professionals who want to deploy and manage the lifecycle of Kubernetes clusters and modern applications in the AWS Cloud, in data centers, and at network edges. Rafay’s SaaS-based platform can automate multicluster provisioning, configuration management, and upgrades for Kubernetes clusters through an automation-ready command line interface (CLI), a Terraform provider, a standards-based API, and an easy-to-use web-based console.
 
+Rafay automates the deployment of containerized applications and enables access to Kubernetes clusters through a zero-trust connectivity model. A unified dashboard provides enterprise-grade capabilities, such as monitoring and visibility across AWS Regions, role-based access control, and governance.
 
 === KOP on AWS
 
