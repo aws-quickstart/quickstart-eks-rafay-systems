@@ -2,7 +2,7 @@
 // Identify your target audience and explain how/why they would use this Quick Start.
 //Avoid borrowing text from third-party websites (copying text from AWS service documentation is fine). Also, avoid marketing-speak, focusing instead on the technical aspect.
 
-With KOP, your platform and site-reliability engineering (SRE) teams can deploy, operate, and manage the lifecycle of Kubernetes clusters and containerized applications in both AWS Cloud and on-premises environments.
+This Quick Start reference deployment guide provides step-by-step instructions for deploying Rafay’s Kubernetes Operations Platform (KOP) for Amazon Elastic Kubernetes Service (Amazon EKS) management and operations. With KOP, your platform and site-reliability engineering (SRE) teams can deploy, operate, and manage the lifecycle of Kubernetes clusters and containerized applications in both AWS Cloud and on-premises environments.
 
 This Quick Start is for IT and DevOps professionals who want to deploy Kubernetes clusters in the AWS Cloud, in data centers, and at network edges. KOP uses a software as a service (SaaS) management console that automates multicluster provisioning, configuration management, and upgrades. It also automates the deployment of containerized applications and enables access to Kubernetes clusters through a zero-trust connectivity model.
 
