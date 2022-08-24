@@ -7,7 +7,7 @@ project:
   lambda_zip_path: functions/packages
   parameters:
     QSS3BucketName: $[taskcat_autobucket]
-    QSS3KeyPrefix: quickstart-eks-rafay-systems/
+    QSS3BucketRegion: $[taskcat_current_region]
     EksClusterName: --override--
 tests:
   new-customer:
