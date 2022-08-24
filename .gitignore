@@ -9,3 +9,4 @@ __pycache__
 /docs/generated/
 /.python-version
 /.taskcat_overrides.yml
+functions/packages/
