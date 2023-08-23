@@ -1,0 +1,3 @@
+// Include details about any licenses and how to sign up. Provide links as appropriate.
+
+Using this Partner Solution in a production environment requires a KMC license. To acquire a license https://console.rafay.dev/#/signup[create a Rafay account^].
